@@ -1,5 +1,8 @@
 import { Calendar } from '@fullcalendar/core';
 import resourceTimelinePlugin from '@fullcalendar/resource-timeline';
+import interactionPlugin from '@fullcalendar/interaction';
+import momentPlugin from '@fullcalendar/moment';
+import bootstrapPlugin from '@fullcalendar/bootstrap';
 
 var calenderObj = function(){
 	var calenderRender = function(){
@@ -7,15 +10,24 @@ var calenderObj = function(){
 	}
 	var initCalendar = function(selector){
 		var calendar = new Calendar(document.getElementById('calendar'), {
-		  	plugins: [ resourceTimelinePlugin ],
+			schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
+		  	plugins: [ momentPlugin , interactionPlugin , resourceTimelinePlugin , bootstrapPlugin],
 		  	editable: true,
 		  	aspectRatio: 2.4,
 		  	timeZone: 'UTC',
+		  	navLinks: true, // can click day/week names to navigate views
 			header: {
-			      left: 'prev,next',
-			      center: 'title',
-			      right: 'resourceTimelineWeek,resourceTimelineMonth,resourceTimelineYear'
+				left: 'prev,next today',
+				center: 'title',
+				right: 'resourceTimelineDay,resourceTimelineWeek,resourceTimelineMonth,resourceTimelineYear'
 			},
+			//selectHelper: true,
+			selectable: true,
+			selectMirror: true,
+			editable: true,
+			eventLimit: true, // allow "more" link when too many events//droppable: true,
+			droppable:false,
+			themeSystem: 'bootstrap',
 		  	defaultView: 'resourceTimelineWeek',
 		  	//resourceLabelText: 'Employes',
 		  	resourceColumns: [

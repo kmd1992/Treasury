@@ -38,6 +38,7 @@
         "@fullcalendar/timegrid": "^4.0.1",
         "@fullcalendar/timeline": "^4.0.1",
         "font-awesome": "^4.7.0",
+        "moment": "^2.24.0",
         "vue-router": "^3.0.2"
     }
 }
