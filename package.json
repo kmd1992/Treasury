@@ -41,6 +41,10 @@
         "@fullcalendar/timegrid": "^4.0.1",
         "@fullcalendar/timeline": "^4.0.1",
         "bootstrap-validator": "^0.11.9",
-        "vue-router": "^3.0.2"
+        "@websanova/vue-auth": "^2.21.14-beta",
+        "es6-promise": "^4.2.6",
+        "vue-axios": "^2.1.4",
+        "vue-router": "^3.0.2",
+        "vuex": "^3.1.0"
     }
 }

@@ -21,6 +21,7 @@
         "spatie/laravel-permission": "^2.29",
         "tightenco/ziggy": "^0.6.9",
         "torann/laravel-meta-tags": "^3.0",
+        "tymon/jwt-auth": "^0.5.12",
         "yajra/laravel-datatables": "^1.4"
     },
     "require-dev": {

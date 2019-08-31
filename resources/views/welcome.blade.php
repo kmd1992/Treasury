@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <div id="app">
-            <index-component></index-component>
+            <index></index>
         </div>
     </div>
     <script src="/js/app.js"></script>

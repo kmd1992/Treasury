@@ -47,10 +47,11 @@
     43 => 'Yajra\\DataTables\\FractalServiceProvider',
     44 => 'Yajra\\DataTables\\HtmlServiceProvider',
     45 => 'Yajra\\DataTables\\DataTablesServiceProvider',
-    46 => 'App\\Providers\\AppServiceProvider',
-    47 => 'App\\Providers\\AuthServiceProvider',
-    48 => 'App\\Providers\\EventServiceProvider',
-    49 => 'App\\Providers\\RouteServiceProvider',
+    46 => 'Tymon\\JWTAuth\\Providers\\JWTAuthServiceProvider',
+    47 => 'App\\Providers\\AppServiceProvider',
+    48 => 'App\\Providers\\AuthServiceProvider',
+    49 => 'App\\Providers\\EventServiceProvider',
+    50 => 'App\\Providers\\RouteServiceProvider',
   ),
   'eager' => 
   array (
@@ -83,10 +84,11 @@
     26 => 'Yajra\\DataTables\\FractalServiceProvider',
     27 => 'Yajra\\DataTables\\HtmlServiceProvider',
     28 => 'Yajra\\DataTables\\DataTablesServiceProvider',
-    29 => 'App\\Providers\\AppServiceProvider',
-    30 => 'App\\Providers\\AuthServiceProvider',
-    31 => 'App\\Providers\\EventServiceProvider',
-    32 => 'App\\Providers\\RouteServiceProvider',
+    29 => 'Tymon\\JWTAuth\\Providers\\JWTAuthServiceProvider',
+    30 => 'App\\Providers\\AppServiceProvider',
+    31 => 'App\\Providers\\AuthServiceProvider',
+    32 => 'App\\Providers\\EventServiceProvider',
+    33 => 'App\\Providers\\RouteServiceProvider',
   ),
   'deferred' => 
   array (
