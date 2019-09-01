@@ -4,8 +4,8 @@
             <Menu></Menu>
         </header>
         <div id="content">
-            <router-view></router-view>
         </div>
+        <router-view></router-view>
     </div>
 </template>
 <script>

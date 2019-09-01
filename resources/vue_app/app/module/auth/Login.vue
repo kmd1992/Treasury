@@ -54,7 +54,9 @@
             success: function() {
                // handle redirection
                app.success = true
-               const redirectTo = redirect ? redirect.from.name : this.$auth.user().role === -1 ? 'admin.dashboard' : 'dashboard'
+               const redirectTo = redirect ? redirect.from.name : parseInt(this.$auth.user().role) === -1 ? 'admin.dashboard' : 'dashboard'
+               console.log(this.$auth.user().role);
+               console.log(parseInt(this.$auth.user().role) === -1);
                // const redirectTo = 'dashboard'
                this.$router.push({name: redirectTo})
             },
