@@ -1,6 +1,6 @@
 <template>
     <div id="main">
-        <header id="header">
+        <header id="header" v-if="$auth.check() && !$route.meta.hideNavigation">
             <Menu></Menu>
         </header>
         <div id="content">

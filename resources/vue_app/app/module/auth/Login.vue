@@ -53,10 +53,17 @@
             },
             success: function() {
                // handle redirection
-               app.success = true
-               const redirectTo = redirect ? redirect.from.name : parseInt(this.$auth.user().role) === -1 ? 'admin.dashboard' : 'dashboard'
-               console.log(this.$auth.user().role);
-               console.log(parseInt(this.$auth.user().role) === -1);
+               app.success = true;
+               let redirectTo = 'home';
+               if(parseInt(this.$auth.user().role) === -1){
+                 redirectTo = 'admin.dashboard';
+               }else if(parseInt(this.$auth.user().role) === 1){
+                 redirectTo = 'dashboard';
+               }
+               //const redirectTo = redirect ? redirect.from.name : parseInt(this.$auth.user().role) === -1 ? 'admin.dashboard' : 'dashboard';
+               console.log(redirect);
+               console.log(parseInt(this.$auth.user().role));
+               console.log(redirectTo);
                // const redirectTo = 'dashboard'
                this.$router.push({name: redirectTo})
             },

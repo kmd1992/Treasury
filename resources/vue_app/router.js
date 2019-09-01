@@ -12,10 +12,7 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: Home,
-    meta: {
-      auth: undefined
-    }
+    redirect: '/admin'
   },
   {
     path: '/register',
@@ -62,7 +59,8 @@ const routes = [
     name: 'not-found',
     component: NotFound,
     meta: {
-      redirect: '/404'
+      redirect: '/404',
+      hideNavigation: true
     }
   },
   /* {

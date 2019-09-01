@@ -1,6 +1,6 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <router-link :to="{name: 'home'}" class="navbar-brand">Laravel + JWT + Vue JS</router-link>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <router-link :to="{name: 'home'}" class="navbar-brand">Treasury</router-link>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -23,7 +23,7 @@
       </ul>
       <ul class="navbar-nav ml-auto" v-if="$auth.check()">
         <li class="nav-item">
-          <a class="nav-link" href="#" @click.prevent="$auth.logout()">Logout</a>
+          <a class="nav-link" href="#" @click="logout()">Logout</a>
         </li>
       </ul>
 
@@ -41,7 +41,7 @@
         routes: {
           // UNLOGGED
           unlogged: [
-            { name: 'Register', path: 'register' },
+            /* { name: 'Register', path: 'register' }, */
             { name: 'Login', path: 'login'}
           ],
           // LOGGED USER
@@ -56,7 +56,13 @@
       }
     },
     mounted() {
-      //
+      
+    },
+    methods: {
+      logout: function(){
+        this.$auth.logout();
+        this.$router.push({ name: 'home', query: { redirect: '/' } });
+      }
     }
   }
 </script>
