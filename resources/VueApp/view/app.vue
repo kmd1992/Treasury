@@ -12,8 +12,8 @@
     </div>
 </template>
 <script>
-  import HeaderMenu from '../_partials/headerMenu.component.vue';
-  import Menu from '../_partials/menu.component.vue';
+  import HeaderMenu from './partials/headerMenu.component.vue';
+  import Menu from './partials/menu.component.vue';
   export default {
       data() { 
         return { }

@@ -64,9 +64,9 @@
                  redirectTo = 'dashboard';
                }
                //const redirectTo = redirect ? redirect.from.name : parseInt(this.$auth.user().role) === -1 ? 'admin.dashboard' : 'dashboard';
-               console.log(redirect);
+               /* console.log(redirect);
                console.log(parseInt(this.$auth.user().role));
-               console.log(redirectTo);
+               console.log(redirectTo); */
                // const redirectTo = 'dashboard'
                this.$router.push({name: redirectTo})
             },
