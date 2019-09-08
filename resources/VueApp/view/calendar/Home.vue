@@ -57,10 +57,9 @@
                         schedulerLicenseKey="CC-Attribution-NonCommercial-NoDerivatives"
                         :header="calendarHeader"
                         :plugins="calendarPlugins"
-                        timeZone="UTC"
-                        aspectRatio="1.8"
-                        navLinks="false"
-                        eventLimit="true"
+                        :resourceAreaWidth=180
+                        :navLinks=true
+                        :eventLimit=true
                         :views="calendarViews"
                         :resources="calendarResources"
                         :events="calendarEvents"

@@ -19522,7 +19522,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -95960,10 +95959,9 @@ var render = function() {
                         "CC-Attribution-NonCommercial-NoDerivatives",
                       header: _vm.calendarHeader,
                       plugins: _vm.calendarPlugins,
-                      timeZone: "UTC",
-                      aspectRatio: "1.8",
-                      navLinks: "false",
-                      eventLimit: "true",
+                      resourceAreaWidth: 180,
+                      navLinks: true,
+                      eventLimit: true,
                       views: _vm.calendarViews,
                       resources: _vm.calendarResources,
                       events: _vm.calendarEvents
