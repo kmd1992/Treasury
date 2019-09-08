@@ -13,7 +13,6 @@
 </head>
 <body>
     <!-- Preloader -->
-    <div id="preloader"></div>
     <div id="app">
         <index></index>
     </div>

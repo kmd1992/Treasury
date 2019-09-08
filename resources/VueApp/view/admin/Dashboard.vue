@@ -1,21 +1,58 @@
 <template>
-   <div class="main-content">
-         <div class="container">
-            <div class="row">
-               <div class="col-12">
-                     <div class="card bg-boxshadow  mb-30">
-                        <div class="card-body">
-                           <div class="col-12">
-                                 Welcome to your administrator dashboard <br><br>
-
-                                 <user-list :usersGetters="usersGetters" ></user-list>
-                           </div>
-                        </div>
-                     </div>
-               </div>
-            </div>
-         </div>
-   </div>
+<div id="main" style="margin-left: 0px;">
+	<div class="container-fluid">
+		<div class="page-header">
+			<div class="pull-left">
+				<h1>Blank page</h1>
+			</div>
+			<div class="pull-right">
+				<ul class="stats">
+					<li class='satgreen'>
+						<i class="fa fa-money"></i>
+						<div class="details">
+							<span class="big">$324,12</span>
+							<span>Balance</span>
+						</div>
+					</li>
+					<li class='lightred'>
+						<i class="fa fa-calendar"></i>
+						<div class="details">
+							<span class="big">February 22, 2013</span>
+							<span>Wednesday, 13:56</span>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="breadcrumbs">
+			<ul>
+				<li>
+					<router-link :to="{ path: '/' }">Home</router-link>
+				</li>
+			</ul>
+			<div class="close-bread">
+				<a href="#">
+					<i class="fa fa-times"></i>
+				</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="box">
+					<div class="box-title">
+						<h3>
+						<i class="fa fa-bars"></i>
+						Basic Widget
+						</h3>
+					</div>
+					<div class="box-content nopadding">
+						<user-list :usersGetters="usersGetters" ></user-list>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 </template>
 <script>
 import { mapGetters } from 'vuex';

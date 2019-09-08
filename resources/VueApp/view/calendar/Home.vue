@@ -1,64 +1,71 @@
 <template>
-<div class="main-content">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="card bg-boxshadow mb-30">
-                    <div class="card-body">
-                        <div class="col-12">
-                            <!-- Main Content Area -->
-                            <div class="d-flex justify-content-center nifty-modals">
-                                <button class="btn rounded-btn  btn-fill btn-fill-primary mr-3 md-trigger" data-modal="modal-1" >ADD EMI</button>
-                                
-                                <div class="md-modal md-effect-1" id="modal-1">
-                                    <div class="md-content">
-                                        <h3 class="pt-4">Add EMI</h3>
-                                        <div>
-                                            <form class="forms-sample">
-                                                <div class="form-group">
-                                                    <label for="exampleInputName1">Date</label>
-                                                    <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="exampleFormControlSelect2">Choose Client</label>
-                                                    <select class="form-control" id="exampleFormControlSelect2">
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="exampleInputName1">EMI</label>
-                                                    <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
-                                                </div>
-                                                <button type="submit" class="btn- btn-c-gradient-1 text-white" style="display:initial">Submit</button>
-                                                <button class="btn- btn-c-gradient-5 text-white" style="display:initial">Cancel</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="md-overlay"></div>
-                            </div>
-                            <hr/>
-                            <FullCalendar
-                            class='demo-app-calendar'
-                            ref="fullCalendar"
-                            defaultView="resourceTimelineWeek"
-                            schedulerLicenseKey="CC-Attribution-NonCommercial-NoDerivatives"
-                            :header="calendarHeader"
-                            :plugins="calendarPlugins"
-                            timeZone="UTC"
-                            aspectRatio="1.8"
-                            navLinks="false"
-                            eventLimit="true"
-                            :views="calendarViews"
-                            themeSystem="bootstrap"
-                            :resources="calendarResources"
-                            :events="calendarEvents"
-                            @dateClick="handleDateClick"
-                            />
-                            
+<div id="main" style="margin-left: 0px;">
+    <div class="container-fluid">
+        <div class="page-header">
+            <div class="pull-left">
+                <h1>Blank page</h1>
+            </div>
+            <div class="pull-right">
+                <ul class="stats">
+                    <li class='satgreen'>
+                        <i class="fa fa-money"></i>
+                        <div class="details">
+                            <span class="big">$324,12</span>
+                            <span>Balance</span>
                         </div>
+                    </li>
+                    <li class='lightred'>
+                        <i class="fa fa-calendar"></i>
+                        <div class="details">
+                            <span class="big">February 22, 2013</span>
+                            <span>Wednesday, 13:56</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="breadcrumbs">
+            <ul>
+                <li>
+                    <router-link :to="{ path: '/' }">Home</router-link>
+                    <i class="fa fa-angle-right"></i>
+                </li>
+                <li>
+                    <router-link :to="{ name: 'calendar'}">Calendar</router-link>
+                </li>
+            </ul>
+            <div class="close-bread">
+                <a href="#">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="box">
+                    <div class="box-title">
+                        <h3>
+                        <i class="fa fa-bars"></i>
+                        Basic Widget
+                        </h3>
+                    </div>
+                    <div class="box-content nopadding">
+                        <FullCalendar
+                        class='demo-app-calendar'
+                        ref="fullCalendar"
+                        defaultView="resourceTimelineWeek"
+                        schedulerLicenseKey="CC-Attribution-NonCommercial-NoDerivatives"
+                        :header="calendarHeader"
+                        :plugins="calendarPlugins"
+                        timeZone="UTC"
+                        aspectRatio="1.8"
+                        navLinks="false"
+                        eventLimit="true"
+                        :views="calendarViews"
+                        :resources="calendarResources"
+                        :events="calendarEvents"
+                        @dateClick="handleDateClick"
+                        />
                     </div>
                 </div>
             </div>
@@ -119,36 +126,7 @@ export default {
         // ...
         $( document ).ready( function()
         {
-            var overlay = document.querySelector('.md-overlay');
-		        [].slice.call(document.querySelectorAll('.md-trigger')).forEach(function (el, i) {
-                var modal = document.querySelector('#' + el.getAttribute('data-modal')),
-                    close = modal.querySelector('.md-close');
 
-                function removeModal(hasPerspective) {
-                    classie.remove(modal, 'md-show');
-                    if (hasPerspective) {
-                        classie.remove(document.documentElement, 'md-perspective');
-                    }
-                }
-
-                function removeModalHandler() {
-                    removeModal(classie.has(el, 'md-setperspective'));
-                }
-                el.addEventListener('click', function (ev) {
-                    classie.add(modal, 'md-show');
-                    overlay.removeEventListener('click', removeModalHandler);
-                    overlay.addEventListener('click', removeModalHandler);
-                    if (classie.has(el, 'md-setperspective')) {
-                        setTimeout(function () {
-                            classie.add(document.documentElement, 'md-perspective');
-                        }, 25);
-                    }
-                });
-                close.addEventListener('click', function (ev) {
-                    ev.stopPropagation();
-                    removeModalHandler();
-                });
-            });
         });
     },
   methods: {

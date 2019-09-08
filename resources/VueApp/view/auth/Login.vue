@@ -1,33 +1,35 @@
 <template>
-  <div class="page-content- h-100vh">
-    <div class="container h-100">
-        <div class="row h-100 justify-content-center align-items-center">
-            <div class="col-md-8 col-lg-6 mx-auto">
-                <!-- Middle Box -->
-                <div class="middle-box text-center bg-white p-5 bg-boxshadow">
-                    <h5 class="mb-20">LOGIN</h5>
-                    <!-- Form -->
-                    <div class="alert alert-danger" v-if="has_error && !success">
-                        <p v-if="error == 'login_error'">Validation Errors.</p>
-                        <p v-else>Error, unable to connect with these credentials.</p>
-                    </div>
-                    <form autocomplete="off" @submit.prevent="login" method="POST">
-                        <!-- Form Group -->
-                        <div class="form-group">
-                            <input type="email" id="email" class="form-control login" placeholder="user@example.com" v-model="email" required>
-                        </div>
-                        <!-- Form Group -->
-                        <div class="form-group">
-                            <input type="password" id="password" class="form-control login" v-model="password" required>
-                        </div>
-                        <button type="submit" class="btn- btn-success btn-1 btn-1c w-100 text-center">Signin</button>                            
-                    </form>
+<div>
+    <h1>
+        <a href="index.html">
+            <img src="img/logo-big.png" alt="" class='retina-ready' width="59" height="49">FLAT</a>
+    </h1>
+    <div class="login-body">
+        <h2>LOGIN</h2>
+        <div class="alert alert-danger" v-if="has_error && !success">
+            <p v-if="error == 'login_error'">Validation Errors.</p>
+            <p v-else>Error, unable to connect with these credentials.</p>
+        </div>
+        <form autocomplete="off" @submit.prevent="login" method="POST" class='form-validate form-vertical'>      
+            <div class="form-group">
+                <label for="email" class="control-label">E-mail Address</label>
+                <div class="email controls">
+                    <input type="email" id="email" placeholder="Email address" class='form-control' data-rule-required="true" data-rule-email="true" v-model="email" required>
                 </div>
             </div>
-        </div>
+            <div class="form-group">
+                <label for="password" class="control-label">Password</label>
+                <div class="pw controls">
+                    <input type="password" id="password" placeholder="Password" class='form-control' data-rule-required="true" v-model="password" required>
+                </div>
+            </div>
+            <div class="submit">
+                <input type="submit" value="Login" class='btn btn-primary btn-lg btn-block'>
+            </div>
+        </form>
+        <div class="forget">&nbsp;</div>
     </div>
 </div>
-
 </template>
 <script>
   export default {
