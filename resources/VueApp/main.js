@@ -12,6 +12,9 @@ import store from './vuex/store';
 import AppLayout from './view/app.vue';
 import { sync } from 'vuex-router-sync';
 
+import FullCalendar from 'vue-full-calendar';
+Vue.use(FullCalendar)
+
 const VueClazyLoad = require('vue-clazy-load')
 sync(store, router);
 Vue.use(VueClazyLoad);

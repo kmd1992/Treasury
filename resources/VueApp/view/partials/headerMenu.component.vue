@@ -174,7 +174,7 @@
             </li>
 
             <li class="nav-item dropdown">
-                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/img/member-img/women.jpg" alt=""></button>
+                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i></button>
                 <div class="dropdown-menu dropdown-menu-right">
                     <!-- User Profile Area -->
                     <div class="user-profile-area">

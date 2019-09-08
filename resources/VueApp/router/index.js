@@ -3,7 +3,8 @@ import VueRouter from 'vue-router'
 
 import Register from '../view/auth/Register.vue';
 import Login from '../view/auth/Login.vue';
-import Dashboard from '../view/user/Dashboard.vue'
+import Dashboard from '../view/user/Dashboard.vue';
+import Calendar from '../view/calendar/Home.vue';
 import AdminDashboard from '../view/admin/Dashboard.vue'
 import NotFound from '../view/partials/404.vue';
 
@@ -54,6 +55,14 @@ const routes = [
           }, 
           forbiddenRedirect: '/403'
         }
+      }
+    },
+    {
+      path: '/calendar',
+      name: 'calendar',
+      component: Calendar,
+      meta: {
+        auth: true
       }
     },
     {

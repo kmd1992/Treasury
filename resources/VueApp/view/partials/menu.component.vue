@@ -21,14 +21,13 @@
                     <!-- Nav Start -->
                     <div class="classynav">
                         <ul>
-                            <li class="cn-dropdown-item has-down"><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a>
-                                <ul class="dropdown">
-                                    <li><a href="index.html">- Dashboard 1</a></li>
-                                    <li><a href="index-2.html">- Dashboard 2</a></li>
-                                </ul>
+                            <li>
+                                <router-link :to="{ path: '/' }"><i class="fa fa-dashboard"></i> Dashboard</router-link>
                             </li>
-                            <li><a href="widgets.html"><i class="fa fa-th"></i> Widget</a></li>
-                            <li class="megamenu-item"><a href="#"><i class="fa fa-pie-chart"></i> Charts</a>
+                            <li>
+                                <router-link :to="{ name: 'calendar'}"><i class="fa fa-calendar"></i> Calendar</router-link>
+                            </li>
+                            <!-- <li class="megamenu-item"><a href="#"><i class="fa fa-pie-chart"></i> Charts</a>
                                 <div class="megamenu">
                                     <ul class="single-mega cn-col-3">
                                         <li><a href="am-column-bar-chart.html">- Am Column Bar Chart</a></li>
@@ -49,8 +48,8 @@
                                         <li><a href="peity-chart.html">- Peity Chart</a></li>
                                     </ul>
                                 </div>
-                            </li>
-                            <li class="megamenu-item"><a href="#"><i class="fa fa-laptop"></i> UI Elements</a>
+                            </li> -->
+                            <!-- <li class="megamenu-item"><a href="#"><i class="fa fa-laptop"></i> UI Elements</a>
                                 <div class="megamenu">
                                     <ul class="single-mega cn-col-4">
                                         <li class="title">Basic Elements</li>
@@ -89,8 +88,8 @@
                                         <li><a href="themify-icon.html">- Themify Icon</a></li>
                                     </ul>
                                 </div>
-                            </li>
-                            <li class="cn-dropdown-item has-down"><a href="#"><i class="fa fa-clipboard"></i> Form</a>
+                            </li> -->
+                            <!-- <li class="cn-dropdown-item has-down"><a href="#"><i class="fa fa-clipboard"></i> Form</a>
                                 <ul class="dropdown">
                                     <li><a href="basic-form.html">- Basic Form</a></li>
                                     <li><a href="form-wizard.html">- Wizard Form</a></li>
@@ -98,8 +97,8 @@
                                     <li><a href="form-repeater.html">- Form Repeater</a></li>
                                     <li><a href="file-upload.html">- File Upload</a></li>
                                 </ul>
-                            </li>
-                            <li class="megamenu-item"><a href="#"><i class="fa fa-dashcube"></i> Data</a>
+                            </li> -->
+                            <!-- <li class="megamenu-item"><a href="#"><i class="fa fa-dashcube"></i> Data</a>
                                 <div class="megamenu">
                                     <ul class="single-mega cn-col-4">
                                         <li class="title">Tables</li>
@@ -138,8 +137,8 @@
                                         <li><a href="vector-map.html">- Vector Map</a></li>
                                     </ul>
                                 </div>
-                            </li>
-                            <li class="megamenu-item"><a href="#"><i class="fa fa-files-o"></i> Pages</a>
+                            </li> -->
+                            <!-- <li class="megamenu-item"><a href="#"><i class="fa fa-files-o"></i> Pages</a>
                                 <div class="megamenu">
                                     <ul class="single-mega cn-col-4">
                                         <li class="title">General Page</li>
@@ -170,15 +169,15 @@
                                         <li><a href="price-table.html">- Price Table</a></li>
                                     </ul>
                                 </div>
-                            </li>
-                            <li class="cn-dropdown-item has-down"><a href="#"><i class="fa fa-window-restore"></i> Apps</a>
+                            </li> -->
+                            <!-- <li class="cn-dropdown-item has-down"><a href="#"><i class="fa fa-window-restore"></i> Apps</a>
                                 <ul class="dropdown">
-                                    <li><a href="chat-box.html">- Chat Box</a></li>
+                                    <li><a href="chat-box.html"> Chat Box</a></li>
                                     <li><a href="calendar.html">- Calendar</a></li>
                                     <li><a href="timeline.html">- Timeline</a></li>
                                     <li><a href="gallery-2.html">- Gallery</a></li>
                                 </ul>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                     <!-- Nav End -->
