@@ -24,18 +24,6 @@
 				</ul>
 			</div>
 		</div>
-		<div class="breadcrumbs">
-			<ul>
-				<li>
-					<router-link :to="{ path: '/' }">Home</router-link>
-				</li>
-			</ul>
-			<div class="close-bread">
-				<a href="#">
-					<i class="fa fa-times"></i>
-				</a>
-			</div>
-		</div>
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="box">

@@ -1,38 +1,60 @@
-<template>
-      <div class="fade modal" v-show="value" role="dialog">
-        <div class="container">
-          <div class="modal__title">Direction</div>
-          <p>Get a direction with your favourite apps</p>
-          <a href="#" class="btn gmaps">
-            <img src="https://img.icons8.com/color/420/google-maps.png"> Google Maps
-          </a>
-          <a href="#" class="btn waze">
-            <img src="https://img.icons8.com/color/420/waze.png"> Waze
-          </a>
-          <button @click.prevent="close" class="mt-3 border-b border-teal font-semibold">Close</button>
+<template id="bs-modal">
+    <!-- MODAL -->
+    <div class="modal fade" id="myModal" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">ADD EMI</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="#" method="POST" class="form-vertical">
+                        <div class="form-group">
+                            <label for="date" class="control-label">Choose Date</label>
+                            <input type="text" name="textfield" id="date" placeholder="Text input" class="form-control datepick">
+                        </div>
+                        <div class="form-group">
+                            <label for="client" class="control-label">Select client</label>
+                            <select2Client></select2Client>
+                        </div>
+                        <div class="form-group">
+                            <label for="price" class="control-label">Enter EMI amount</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">Rs.</span>
+                                <input type="text" placeholder="Price" class="form-control">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
         </div>
-      </div>
-    </template>
+    </div>    
+</template>
+<script>
+//import 'bootstrap-datepicker';
+import select2Client from './Select2';
+export default {
+    name: 'modal',
+    template: '#bs-modal',
+    components : {
+        select2Client
+    },
+    data () {
+        return {
+        }
+    },
+    mounted() {
+        console.log("Load Modal popup");
+        $('.datepick').datepicker({
+            format: 'dd/mm/yyyy',
+            clearBtn: true,
+            autoclose: true,
+        }).datepicker('setDate', 'today');
+    },
+};
+</script>
 
-    <script>
-        export default {
-            name: 'Modal',
-            props: {
-                value: {
-                    required: true
-                }
-            },
-            methods: {
-                close() {
-                  this.$emit("input", !this.value);
-                }            
-            }
-        };
-    </script>
-
-
-    <style lang="css" scoped>
-        .modal {
-          background-color: rgba(0, 0, 0, 0.7);
-      }
-    </style>

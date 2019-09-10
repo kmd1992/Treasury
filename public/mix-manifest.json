@@ -2,5 +2,7 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/css/style.css": "/css/style.css",
-    "/js/template_plug.js": "/js/template_plug.js"
+    "/js/template_plug.js": "/js/template_plug.js",
+    "/js/plugins/select2.js": "/js/plugins/select2.js",
+    "/css/plugins/select2.css": "/css/plugins/select2.css"
 }

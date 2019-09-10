@@ -1,6 +1,6 @@
 <template>
     <div class="container-fluid">
-        <router-link :to="{name: 'home'}" id="brand">FLAT</router-link>
+        <router-link :to="{name: 'home'}" id="brand">TREASURY</router-link>
 
         <ul class='main-nav'>
             <li>
