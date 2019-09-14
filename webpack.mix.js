@@ -4,7 +4,6 @@ const mix = require('laravel-mix');
 mix.styles([
    'resources/css/bootstrap.min.css',     //base theme css start
    'resources/css/plugins/jquery-ui/jquery-ui.min.css',
-   'resources/css/plugins/datepicker/datepicker.css',
    'resources/css/style.css',
    'resources/css/themes.css',             //base theme css end
 ],'public/css/style.css');
@@ -20,10 +19,10 @@ mix.scripts([
    'resources/js/plugins/slimscroll/jquery.slimscroll.min.js',
    'resources/js/bootstrap.min.js',
    'resources/js/plugins/form/jquery.form.min.js',
+   'resources/js/plugins/maskedinput/jquery.maskedinput.min.js',
    'resources/js/eakroko.min.js',
    'resources/js/application.min.js',
    'resources/js/demonstration.min.js',
-   'resources/js/plugins/datepicker/bootstrap-datepicker.js',
 ],'public/js/template_plug.js');
 
 mix.scripts(['resources/js/plugins/select2/select2.js'], 'public/js/plugins/select2.js');

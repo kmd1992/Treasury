@@ -1,5 +1,5 @@
 <template>
-    <select class="form-control" :name="name">
+    <select class="form-control" v-model="client">
         <slot></slot>
     </select>
 </template>
@@ -8,6 +8,7 @@
     import select2 from 'select2'
     import 'select2/dist/css/select2.min.css';
     export default {
+    props: ['client'],
     data(){
         return {
             name:'',

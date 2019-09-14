@@ -3,10 +3,10 @@ import VueRouter from 'vue-router'
 
 import Register from '../view/auth/Register.vue';
 import Login from '../view/auth/Login.vue';
-import Dashboard from '../view/user/Dashboard.vue';
 import Calendar from '../view/calendar/Home.vue';
 import AdminDashboard from '../view/admin/Dashboard.vue'
 import NotFound from '../view/partials/404.vue';
+import Client from '../view/clients/Home.vue';
 
 Vue.use(VueRouter)
 
@@ -33,15 +33,6 @@ const routes = [
         auth: false
       }
     },
-    // USER ROUTES
-    {
-      path: '/dashboard',
-      name: 'dashboard',
-      component: Dashboard,
-      meta: {
-        auth: true
-      }
-    },
     // ADMIN ROUTES
     {
       path: '/admin',
@@ -57,6 +48,7 @@ const routes = [
         }
       }
     },
+    // CALENDAR ROUTES
     {
       path: '/calendar',
       name: 'calendar',
@@ -65,6 +57,15 @@ const routes = [
         auth: true
       }
     },
+    // CLIENT ROUTES
+    {
+        path: '/client',
+        name: 'client',
+        component: Client,
+        meta: {
+          auth: true
+        }
+      },
     {
       path: '*',
       name: 'not-found',

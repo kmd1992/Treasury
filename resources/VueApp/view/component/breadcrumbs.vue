@@ -14,5 +14,5 @@
   }
 </script>
 <style>
-.isDisabled { color: currentColor; cursor: not-allowed; opacity: 0.6; text-decoration: none !important; }
+.isDisabled { color: currentColor; cursor: auto; opacity: 0.6; text-decoration: none !important; }
 </style>

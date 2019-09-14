@@ -10,6 +10,22 @@
     <link href="{{ mix('css/app.css') }}" type="text/css" rel="stylesheet" />
     <link href="{{ asset('css/style.css') }}" type="text/css" rel="stylesheet" />
     <meta name="csrf-token" value="{{ csrf_token() }}" />
+    <style type="text/css">
+    html, body {
+    height: 100%;
+    }
+
+    body {
+    background: #ffffff;
+    display: flex;
+    flex-flow: column;
+    }
+
+    footer {
+    margin-top: auto;
+    background-color: #222;
+    }
+    </style>
 </head>
 <body>
     <!-- Preloader -->

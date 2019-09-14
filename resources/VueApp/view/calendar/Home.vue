@@ -1,36 +1,18 @@
 <template>
 <div id="main" style="margin-left: 0px;">
     <div class="container-fluid">
-        <div class="page-header">
-            <div class="pull-left">
-                <h1>Calendar</h1>
-            </div>
-            <div class="pull-right">
-                <ul class="stats">
-                    <li class='satgreen'>
-                        <i class="fa fa-money"></i>
-                        <div class="details">
-                            <span class="big">$324,12</span>
-                            <span>Balance</span>
-                        </div>
-                    </li>
-                    <li class='lightred'>
-                        <i class="fa fa-calendar"></i>
-                        <div class="details">
-                            <span class="big">February 22, 2013</span>
-                            <span>Wednesday, 13:56</span>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <breadcrumbsComponent v-bind="breadcrumbs"></breadcrumbsComponent>
+        <page-head v-bind="pageHeadData"></page-head>      <!-- Page header -->
+
+        <breadcrumbs v-bind="breadcrumbs"></breadcrumbs>    <!-- Breadcrums component -->
+        
         <div class="row">
             <div class="col-sm-12">
                 <div class="box">
                     <div class="box-title">
                         <h3><i class="fa fa-bars"></i></h3>
-                        <Model></Model>
+
+                        <model></model>     <!-- Model popup component -->
+
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">ADD EMI</button>
                     </div>
                     <div class="box-content nopadding">
@@ -70,28 +52,30 @@ import "@fullcalendar/core/main.css";
 import "@fullcalendar/timeline/main.css";
 import "@fullcalendar/resource-timeline/main.css";
 
+import pageHead from '../component/pagehead';
+import breadcrumbs from "./../component/breadcrumbs";
 import Model from "./LoanPopup";
-import breadcrumbsComponent from "./../component/breadcrumbs";
 
 export default {
     components: {
-        breadcrumbsComponent,
+        'page-head' : pageHead,
+        'breadcrumbs' : breadcrumbs,
+        'model' : Model,
         FullCalendar,
-        Model
     },
     data: function() {
         return {
+            pageHeadData:{
+                pageTitle: 'Calendar'
+            },
             breadcrumbs: {
-                data: [
-                    {
-                        title: 'Home',
-                        to: { path: '/' }
-                    },
-                    {
-                        title: 'Calendar',
-                        to: { name: 'calendar'}
-                    }
-                ]
+                data: [{
+                    title: 'Home',
+                    to: { path: '/' }
+                },{
+                    title: 'Calendar',
+                    to: { name: 'calendar'}
+                }]
             },
             calendarHeader:{
                 left: 'prev,next today',

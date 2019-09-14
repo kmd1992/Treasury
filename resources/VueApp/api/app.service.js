@@ -1,12 +1,13 @@
 import Config from '../config/app.config.js';
 import appCache from './app.service.cache.js'
 
-let wordpressService = {
-   cacheRequest (path, cacheTime) {
+let laravelService = {
+   cacheRequest (path, cacheTime) 
+   {
       return new Promise((resolve, reject) => {
-        appCache.get(path, cacheTime)
-          .then(response => { resolve(response) })
-          .catch(err => { reject(err) })
+         appCache.get(path, cacheTime)
+                  .then(res => { resolve(res) })
+                  .catch(err => { reject(err) })
       })
    },
    getUserService () 
@@ -21,7 +22,20 @@ let wordpressService = {
                .catch(error => reject(error))
          }
       );
-  }
+   },
+   getClientService:function() 
+   {
+      return new Promise(
+         (resolve, reject) => {
+            let apiPath = Config.appDomain + `clients`;
+            this.cacheRequest(apiPath, 0).then(
+                     (res) => {
+                        resolve(res.data)
+                     }
+                  ).catch(error => reject(error))
+         }
+      );
+   }
 }
 
-export default wordpressService
+export default laravelService

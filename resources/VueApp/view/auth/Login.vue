@@ -15,7 +15,7 @@
         autocomplete="off"
         @submit.prevent="login"
         method="POST"
-        class="form-validate form-vertical"
+        class="form-vertical"
       >
         <div class="form-group">
           <label for="email" class="control-label">E-mail Address</label>
