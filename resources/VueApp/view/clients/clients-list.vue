@@ -31,18 +31,27 @@ import { mapGetters } from 'vuex';
 export default {
   	name: 'client-list',
   	data(){
-        return { }
-	},
-    computed: {
-        ...mapGetters('clientStore', ['clientsGetters'])
-    },
-    methods: {
-        loadClients:function () {
-            this.$store.dispatch(`clientStore/getClientList`)
+        return { 
+            clientsList: null
         }
     },
     mounted () {
-        this.loadClients();
-    }
+        this.$store.dispatch(`clientStore/getClients`);
+    },
+    computed: {
+        ...mapGetters('clientStore', ['clientsGetters'])
+    },
+    /* watch: {
+        'clientsGetters': {
+            deep: true,
+            handler (value) {
+                //console.log(value);
+                this.clientsList = value
+            }
+        }
+    },
+    created: function () {
+        this.clientsList = this.clientsGetters
+    } */
 }
 </script>

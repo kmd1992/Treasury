@@ -35,6 +35,17 @@ let laravelService = {
                   ).catch(error => reject(error))
          }
       );
+   },
+   getClientsDropdownService:function(){
+      return new Promise(
+         (resolve, reject) => {
+            let apiPath = Config.appDomain + `clients/dropdown`;
+            this.cacheRequest(apiPath, 0).then(
+                     (res) => {
+                        resolve(res.data)
+                     }
+                  ).catch(error => reject(error))
+      });
    }
 }
 

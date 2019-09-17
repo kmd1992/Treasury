@@ -7,7 +7,7 @@
         
         <div class="row">
             <div class="col-sm-12">
-                <div class="box">
+                <div class="box box-bordered">
                     <div class="box-title">
                         <h3><i class="fa fa-bars"></i></h3>
 
@@ -15,7 +15,7 @@
 
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">ADD EMI</button>
                     </div>
-                    <div class="box-content nopadding">
+                    <div class="box-content">
                         <FullCalendar
                         class='demo-app-calendar'
                         ref="fullCalendar"
@@ -119,7 +119,7 @@ export default {
             calendarEvents: "https://fullcalendar.io/demo-events.json?single-day&for-resource-timeline",
             calendarEventRender: function(event, element) {
                 let tooltip = event.event.title;
-                console.log(event.event);
+                //console.log(event.event);
                 //----- let desc = event.event.extendedProps.description;
                 let desc = {name: 'Test Event Name', date: '01-01-2019', emi: '100'};
                 if (event.el) {
@@ -152,11 +152,7 @@ export default {
         }
     },
     created() {
-        // ...
-        $( document ).ready( function()
-        {
-
-        });
+        
     },
   methods: {
     toggleWeekends() {

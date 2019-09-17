@@ -1,18 +1,18 @@
+import axios from 'axios'
 import laravelService from '../../../api/app.service';
 
-const getClientList = ({state}) => 
+const getClients = ({state}) => 
 {
    if (state.clients && state.clients.length > 0) {
       return
    }
 
-   return new Promise( 
+   return new Promise(
       (resolve, reject) => {
          laravelService.getClientService()
                        .then((resUsers) => {
                            const clients = resUsers.clients;
-                           Promise.all(clients)
-                                  .then(resolClients => {
+                           Promise.all(clients).then(resolClients => {
                                        state.clients = resolClients
                                        resolve()
                                    })
@@ -23,7 +23,36 @@ const getClientList = ({state}) =>
       }
    )
 }
+const createClient = ({commit, state}, post) => {
+   return axios.post('/clients/store', post)
+               .then((res) => {
+                  var clients = res.data.clients;
+                  state.clients = clients
+                  commit('CREATE_CLIENTS',{ clients });
+               })
+               .catch(error => {
+                     console.log(error)
+               })
+}
+const getClientsDropdown = ({state}) => {
+   if (state.clientsDropdown && state.clientsDropdown.length > 0) return;
+   return new Promise(
+      (resolve, reject) => {
+         laravelService.getClientsDropdownService()
+                       .then((response) => {
+                           Promise.all(response.clients).then(resolClients => {
+                                       state.clientsDropdown = resolClients
+                                       resolve()
+                                   })
+                        })
+                        .catch(error => {
+                           reject(error)
+                        })
+   })
+}
 
 export {
-   getClientList
+   getClients,
+   createClient,
+   getClientsDropdown
 }

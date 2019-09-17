@@ -8,10 +8,10 @@
 
 		<div class="row">
 			<div class="col-sm-12">
-				<div class="box">
+				<div class="box box-bordered">
 					<div class="box-title">
 						<h3><i class="fa fa-bars"></i></h3>
-    					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">ADD CLIENT</button>
+                        <router-link :to="{ path: '/client/store' }" class="btn btn-primary"><i class="fa fa-user"></i>&nbsp;ADD CLIENT</router-link>
 					</div>
 					<div class="box-content nopadding">
 						<client-list></client-list>

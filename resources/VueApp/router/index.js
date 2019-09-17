@@ -7,6 +7,7 @@ import Calendar from '../view/calendar/Home.vue';
 import AdminDashboard from '../view/admin/Dashboard.vue'
 import NotFound from '../view/partials/404.vue';
 import Client from '../view/clients/Home.vue';
+import ClientStore from '../view/clients/Store.vue';
 
 Vue.use(VueRouter)
 
@@ -65,7 +66,15 @@ const routes = [
         meta: {
           auth: true
         }
-      },
+    },
+    {
+        path: '/client/store',
+        name: 'client_store',
+        component: ClientStore,
+        meta: {
+          auth: true
+        }
+    },
     {
       path: '*',
       name: 'not-found',

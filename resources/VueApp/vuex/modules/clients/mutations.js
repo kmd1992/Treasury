@@ -1,7 +1,11 @@
-const FETCH_CLIENTS = (state, client) => {
-  return state.clients = client
+const FETCH_CLIENTS = (state, value) => {
+  return state.clients = value
+}
+const CREATE_CLIENTS = (state, value) => {
+  return state.clientsDropdown = Object.assign({}, state.clientsDropdown, value)
 }
 
 export {
-  FETCH_CLIENTS
+  FETCH_CLIENTS,
+  CREATE_CLIENTS
 }

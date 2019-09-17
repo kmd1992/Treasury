@@ -1,5 +1,5 @@
 <template>
-    <select class="form-control" v-model="client">
+    <select class="form-control">
         <slot></slot>
     </select>
 </template>
@@ -8,47 +8,34 @@
     import select2 from 'select2'
     import 'select2/dist/css/select2.min.css';
     export default {
-    props: ['client'],
-    data(){
-        return {
-            name:'',
-            selected: 2,
-            options: [
-                { id: 1, text: 'ABC' },
-                { id: 2, text: 'DEF' },
-                { id: 3, text: 'LMO' },
-                { id: 4, text: 'PQR' },
-                { id: 5, text: 'XYZ' }
-            ]
-        }
-    },
-    mounted: function () {
-        var vm = this
-        $(this.$el).select2({
-                        placeholder: "Select Client",
-                        allowClear: true,
-                        data: this.options,
-                        width: '100%'
+        props: ['options', 'value'],
+        mounted: function () {
+            var vm = this
+            $(this.$el).select2({
+                            placeholder: "Select Client",
+                            allowClear: true,
+                            data: this.options,
+                            width: '100%'
+                        })
+                    .val(this.value)
+                    .trigger('change')
+                    .on('change', function () {
+                        vm.$emit('input', this.value)
                     })
-                .val(this.value)
-                .trigger('change')
-                .on('change', function () {
-                    vm.$emit('input', this.value)
-                })
-    },
-    watch: {
-        value: function (value) {
-        // update value
-        $(this.$el).val(value).trigger('change');
         },
-        options: function (options) {
-        // update options
-        $(this.$el).select2({ data: options })
+        watch: {
+            value: function (value) {
+                // update value
+                $(this.$el).val(value).trigger('change');
+            },
+            options: function (options) {
+                // update options
+                $(this.$el).select2({ data: options })
+            }
+        },
+        destroyed: function () {
+            $(this.$el).off().select2('destroy')
         }
-    },
-    destroyed: function () {
-        $(this.$el).off().select2('destroy')
-    }
     }
 </script>
 <style>

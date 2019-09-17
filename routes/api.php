@@ -41,6 +41,8 @@ Route::prefix('v1')->group(function () {
     Route::middleware('auth:api')->group(function () {
         Route::resource('users', 'UserController')->only(['index','show']);
         Route::post('emi/store', 'EmiController@store');
-        Route::resource('clients', 'ClientController')->only(['index','show']);
+        Route::get('clients', 'ClientController@index');
+        Route::get('clients/dropdown', 'ClientController@dropdown');
+        Route::post('clients/store', 'ClientController@store');
     });
 });
