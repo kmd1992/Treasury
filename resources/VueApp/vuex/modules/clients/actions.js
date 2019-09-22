@@ -60,10 +60,21 @@ const getClientsResouces = ({state}, params) =>{
                      console.log(error)
                })
 }
+const getClientsEvents = ({state}, params) =>{
+   return axios.get('/clients/events', params)
+               .then((res) => {
+                  state.clientsEvents = res.data
+                  return res.data;
+               })
+               .catch(error => {
+                     console.log(error)
+               })
+}
 
 export {
    getClients,
    createClient,
    getClientsDropdown,
-   getClientsResouces
+   getClientsResouces,
+   getClientsEvents
 }

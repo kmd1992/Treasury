@@ -44,6 +44,7 @@ Route::prefix('v1')->group(function () {
         Route::get('clients', 'ClientController@index');
         Route::get('clients/dropdown', 'ClientController@dropdown');
         Route::get('clients/resources', 'ClientController@resources');
+        Route::get('clients/events', 'ClientController@events');
         Route::post('clients/store', 'ClientController@store');
     });
 });

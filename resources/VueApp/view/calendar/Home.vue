@@ -114,7 +114,8 @@ export default {
             calendarResourceRender: function(info) {
                 const x = document.createElement("A");
                 const icon = document.createElement("I");
-                icon.style.color = info.resource.extendedProps.color;
+                //console.log(info.resource);
+                icon.style.color = info.resource.eventBackgroundColor;
                 icon.setAttribute("class", "fa fa-circle");
                 const t = document.createTextNode(' \t ' + info.el.querySelector('.fc-cell-text').innerText);
                 /*----- x.setAttribute("href", route('calendar.info', {
@@ -131,9 +132,9 @@ export default {
             calendarEvents: null,
             calendarEventRender: function(event, element) {
                 let tooltip = event.event.title;
-                //console.log(event.event);
-                //----- let desc = event.event.extendedProps.description;
-                let desc = {name: 'Test Event Name', date: '01-01-2019', emi: '100'};
+                let desc = event.event.extendedProps.description;
+                //console.log(desc);
+                //let desc = {name: 'Test Event Name', date: '01-01-2019', emi: '100'};
                 if (event.el) {
 
                     //Tooltip start
@@ -143,7 +144,14 @@ export default {
                         placement:'top',
                         boundary: 'window',
                         container: 'body',
-                        title: "<span><i class='fa fa-circle' style='color: rgb(87, 124, 255);'></i>&nbsp;&nbsp;" + desc.name + "</br><em>" + desc.date + "</em></br>" + desc.emi + "</span>"
+                        title: "<span style='text-align:left'>"+
+                        "<i class='fa fa-circle' style='color: "+desc.color+"'></i>&nbsp;&nbsp;" + 
+                        desc.name + "</br>"+
+                        "<em>" + desc.date + "</em></br>" + 
+                        "Emi :- "+desc.emi + "</br>"+
+                        "Paid Amount :- "+desc.emi + "</br>"+
+                        "Pending Amount :- "+desc.emi + "</br>"+
+                        "</span>"
                     });
                     
                     //Tooltip end
@@ -168,6 +176,7 @@ export default {
         this.calendarEvents = 'https://fullcalendar.io/demo-events.json?single-day&for-resource-timeline';
         
         this.getCalendarResouces();
+        this.getCalendarEvents();
     },
     methods: {
         toggleWeekends:function() {
@@ -204,11 +213,22 @@ export default {
                     }
                 }
             );
+        },
+        getCalendarEvents:function(){
+            this.$store.dispatch(`clientStore/getClientsEvents`, {params: {auth: this.$auth.user().id}}).then(
+                (res) => {
+                    if(res.status == 'success'){
+                        this.calendarEvents = res.events 
+                        //console.log(res);
+                    }
+                }
+            );
         }
     }
 }
 </script>
 
 <style>
+.tooltip-inner{text-align: left !important; color: #ddd !important;}
 .fc th, .fc td{ border-color: #ddd; }
 </style>

@@ -5,7 +5,8 @@ import * as mutations from './mutations'
 const defaultState = {
   clients: [],
   clientsDropdown: [],
-  clientsResouces: []
+  clientsResouces: [],
+  clientsEvents: []
 }
   
 const inBrowser = typeof window !== 'undefined'

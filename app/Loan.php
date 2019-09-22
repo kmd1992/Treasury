@@ -14,4 +14,8 @@ class Loan extends Model
     protected $fillable = [
         'client_id', 'amount', 'paid_amount', 'emi_type','emi_amount','status','desc'
     ];
+
+    public function emi(){
+        return $this->hasMany(Emi::class,'loan_id','id');
+    }
 }
