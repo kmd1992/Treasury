@@ -14,4 +14,8 @@ class Client extends Model
     protected $fillable = [
         'user_id', 'name', 'contact', 'seccontact','gender','city','address','occupation','occupation_add','color','payer_type'
     ];
+
+    public function loan(){
+        return $this->hasOne(Loan::class,'client_id','id');
+    }
 }

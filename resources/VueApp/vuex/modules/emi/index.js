@@ -4,6 +4,7 @@ import * as mutations from './mutations'
 
 const defaultState = {
   emis: [],
+  emi:[]
 }
   
 const inBrowser = typeof window !== 'undefined'

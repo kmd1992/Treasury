@@ -71,7 +71,14 @@ export default {
     },
     methods: {
         createEmi:function(emi) {
-            this.$store.dispatch('emi/createEmi', emi)
+            this.$store.dispatch('emi/createEmi', emi).then(
+                (response) => {
+                    if(response.status == 201){
+                        $("#myModal").modal('hide');
+                        console.log("Emi Stored successfuly");
+                    }
+                }
+            );
         },
         convertDate:function(str) {
             var date = new Date(str),
@@ -88,19 +95,7 @@ export default {
             return (this.emi.date !== '' && this.emi.client !== '' && this.emi.price !== '')
         },
         ...mapGetters('clientStore', ['clientsGettersDropdown'])
-    },
-    /* watch: {
-        'clientsGettersDropdown': {
-            deep: true,
-            handler (value) {
-                console.log(value);
-                this.clientsOptions = value
-            }
-        }
-    },
-    created: function () {
-        this.clientsOptions = this.clientsGettersDropdown
-    } */
+    }
 };
 </script>
 

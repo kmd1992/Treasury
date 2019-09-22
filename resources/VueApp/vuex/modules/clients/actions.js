@@ -50,9 +50,20 @@ const getClientsDropdown = ({state}) => {
                         })
    })
 }
+const getClientsResouces = ({state}, params) =>{
+   return axios.get('/clients/resources', params)
+               .then((res) => {
+                  state.clientsResouces = res.data
+                  return res.data;
+               })
+               .catch(error => {
+                     console.log(error)
+               })
+}
 
 export {
    getClients,
    createClient,
-   getClientsDropdown
+   getClientsDropdown,
+   getClientsResouces
 }

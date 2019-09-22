@@ -19551,15 +19551,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fullcalendar_resource_timeline__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fullcalendar/resource-timeline */ "./node_modules/@fullcalendar/resource-timeline/main.esm.js");
 /* harmony import */ var _fullcalendar_interaction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fullcalendar/interaction */ "./node_modules/@fullcalendar/interaction/main.esm.js");
 /* harmony import */ var _fullcalendar_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fullcalendar/bootstrap */ "./node_modules/@fullcalendar/bootstrap/main.esm.js");
-/* harmony import */ var _fullcalendar_core_main_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fullcalendar/core/main.css */ "./node_modules/@fullcalendar/core/main.css");
-/* harmony import */ var _fullcalendar_core_main_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_fullcalendar_core_main_css__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _fullcalendar_timeline_main_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fullcalendar/timeline/main.css */ "./node_modules/@fullcalendar/timeline/main.css");
-/* harmony import */ var _fullcalendar_timeline_main_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_fullcalendar_timeline_main_css__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _fullcalendar_resource_timeline_main_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fullcalendar/resource-timeline/main.css */ "./node_modules/@fullcalendar/resource-timeline/main.css");
-/* harmony import */ var _fullcalendar_resource_timeline_main_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_fullcalendar_resource_timeline_main_css__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _component_pagehead__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../component/pagehead */ "./resources/VueApp/view/component/pagehead.vue");
-/* harmony import */ var _component_breadcrumbs__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./../component/breadcrumbs */ "./resources/VueApp/view/component/breadcrumbs.vue");
-/* harmony import */ var _LoanPopup__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./LoanPopup */ "./resources/VueApp/view/calendar/LoanPopup.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _fullcalendar_core_main_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fullcalendar/core/main.css */ "./node_modules/@fullcalendar/core/main.css");
+/* harmony import */ var _fullcalendar_core_main_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_fullcalendar_core_main_css__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _fullcalendar_timeline_main_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fullcalendar/timeline/main.css */ "./node_modules/@fullcalendar/timeline/main.css");
+/* harmony import */ var _fullcalendar_timeline_main_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_fullcalendar_timeline_main_css__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _fullcalendar_resource_timeline_main_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @fullcalendar/resource-timeline/main.css */ "./node_modules/@fullcalendar/resource-timeline/main.css");
+/* harmony import */ var _fullcalendar_resource_timeline_main_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_fullcalendar_resource_timeline_main_css__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _component_pagehead__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../component/pagehead */ "./resources/VueApp/view/component/pagehead.vue");
+/* harmony import */ var _component_breadcrumbs__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./../component/breadcrumbs */ "./resources/VueApp/view/component/breadcrumbs.vue");
+/* harmony import */ var _LoanPopup__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./LoanPopup */ "./resources/VueApp/view/calendar/LoanPopup.vue");
 //
 //
 //
@@ -19604,6 +19605,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+
 
 
 
@@ -19616,9 +19620,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    'page-head': _component_pagehead__WEBPACK_IMPORTED_MODULE_7__["default"],
-    'breadcrumbs': _component_breadcrumbs__WEBPACK_IMPORTED_MODULE_8__["default"],
-    'model': _LoanPopup__WEBPACK_IMPORTED_MODULE_9__["default"],
+    'page-head': _component_pagehead__WEBPACK_IMPORTED_MODULE_8__["default"],
+    'breadcrumbs': _component_breadcrumbs__WEBPACK_IMPORTED_MODULE_9__["default"],
+    'model': _LoanPopup__WEBPACK_IMPORTED_MODULE_10__["default"],
     FullCalendar: _fullcalendar_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
@@ -19659,12 +19663,18 @@ __webpack_require__.r(__webpack_exports__);
         }
       },
       calendarWeekends: true,
-      calendarResources: 'https://fullcalendar.io/demo-resources.json?with-nesting&with-colors',
+      calendarResources: null,
+      calendarResourceColumns: [{
+        labelText: 'Client',
+        field: 'name'
+      }, {
+        labelText: 'Loan',
+        field: 'loan'
+      }],
       calendarResourceRender: function calendarResourceRender(info) {
         var x = document.createElement("A");
-        var icon = document.createElement("I"); //----- icon.style.color = info.resource._resource.ui.backgroundColor;
-
-        icon.style.color = "#577CFF";
+        var icon = document.createElement("I");
+        icon.style.color = info.resource.extendedProps.color;
         icon.setAttribute("class", "fa fa-circle");
         var t = document.createTextNode(' \t ' + info.el.querySelector('.fc-cell-text').innerText);
         /*----- x.setAttribute("href", route('calendar.info', {
@@ -19679,7 +19689,7 @@ __webpack_require__.r(__webpack_exports__);
         info.el.querySelector('.fc-cell-text').appendChild(icon);
         info.el.querySelector('.fc-cell-text').appendChild(x);
       },
-      calendarEvents: "https://fullcalendar.io/demo-events.json?single-day&for-resource-timeline",
+      calendarEvents: null,
       calendarEventRender: function calendarEventRender(event, element) {
         var tooltip = event.event.title; //console.log(event.event);
         //----- let desc = event.event.extendedProps.description;
@@ -19717,7 +19727,11 @@ __webpack_require__.r(__webpack_exports__);
 
     };
   },
-  created: function created() {},
+  created: function created() {
+    this.calendarResources = 'https://fullcalendar.io/demo-resources.json?with-nesting&with-colors';
+    this.calendarEvents = 'https://fullcalendar.io/demo-events.json?single-day&for-resource-timeline';
+    this.getCalendarResouces();
+  },
   methods: {
     toggleWeekends: function toggleWeekends() {
       this.calendarWeekends = !this.calendarWeekends; // update a property
@@ -19745,6 +19759,19 @@ __webpack_require__.r(__webpack_exports__);
     },
     openModal: function openModal() {
       this.modalOpen = !this.modalOpen;
+    },
+    getCalendarResouces: function getCalendarResouces() {
+      var _this = this;
+
+      this.$store.dispatch("clientStore/getClientsResouces", {
+        params: {
+          auth: this.$auth.user().id
+        }
+      }).then(function (res) {
+        if (res.status == 'success') {
+          _this.calendarResources = res.resouces; //console.log(res.resouces);
+        }
+      });
     }
   }
 });
@@ -19838,7 +19865,12 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(v_mask__WEBPACK_IMPORTED_MODULE_2
   },
   methods: {
     createEmi: function createEmi(emi) {
-      this.$store.dispatch('emi/createEmi', emi);
+      this.$store.dispatch('emi/createEmi', emi).then(function (response) {
+        if (response.status == 201) {
+          $("#myModal").modal('hide');
+          console.log("Emi Stored successfuly");
+        }
+      });
     },
     convertDate: function convertDate(str) {
       var date = new Date(str),
@@ -19855,19 +19887,6 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(v_mask__WEBPACK_IMPORTED_MODULE_2
       return this.emi.date !== '' && this.emi.client !== '' && this.emi.price !== '';
     }
   }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('clientStore', ['clientsGettersDropdown']))
-  /* watch: {
-      'clientsGettersDropdown': {
-          deep: true,
-          handler (value) {
-              console.log(value);
-              this.clientsOptions = value
-          }
-      }
-  },
-  created: function () {
-      this.clientsOptions = this.clientsGettersDropdown
-  } */
-
 });
 
 /***/ }),
@@ -103092,12 +103111,14 @@ var render = function() {
                           "CC-Attribution-NonCommercial-NoDerivatives",
                         header: _vm.calendarHeader,
                         plugins: _vm.calendarPlugins,
-                        resourceAreaWidth: 180,
+                        resourceAreaWidth: 280,
                         contentHeight: 437,
                         navLinks: true,
                         eventLimit: true,
                         views: _vm.calendarViews,
                         themeSystem: "bootstrap",
+                        resourceGroupField: "type",
+                        resourceColumns: _vm.calendarResourceColumns,
                         resources: _vm.calendarResources,
                         resourceRender: _vm.calendarResourceRender,
                         events: _vm.calendarEvents,
@@ -122005,7 +122026,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!**********************************************************!*\
   !*** ./resources/VueApp/vuex/modules/clients/actions.js ***!
   \**********************************************************/
-/*! exports provided: getClients, createClient, getClientsDropdown */
+/*! exports provided: getClients, createClient, getClientsDropdown, getClientsResouces */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -122013,6 +122034,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getClients", function() { return getClients; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createClient", function() { return createClient; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getClientsDropdown", function() { return getClientsDropdown; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getClientsResouces", function() { return getClientsResouces; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _api_app_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../api/app.service */ "./resources/VueApp/api/app.service.js");
@@ -122068,6 +122090,16 @@ var getClientsDropdown = function getClientsDropdown(_ref3) {
   });
 };
 
+var getClientsResouces = function getClientsResouces(_ref4, params) {
+  var state = _ref4.state;
+  return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/clients/resources', params).then(function (res) {
+    state.clientsResouces = res.data;
+    return res.data;
+  })["catch"](function (error) {
+    console.log(error);
+  });
+};
+
 
 
 /***/ }),
@@ -122076,19 +122108,24 @@ var getClientsDropdown = function getClientsDropdown(_ref3) {
 /*!**********************************************************!*\
   !*** ./resources/VueApp/vuex/modules/clients/getters.js ***!
   \**********************************************************/
-/*! exports provided: clientsGetters, clientsGettersDropdown */
+/*! exports provided: clientsGetters, clientsGettersDropdown, clientsGettersResouces */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clientsGetters", function() { return clientsGetters; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clientsGettersDropdown", function() { return clientsGettersDropdown; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clientsGettersResouces", function() { return clientsGettersResouces; });
 var clientsGetters = function clientsGetters(state) {
   return state.clients;
 };
 
 var clientsGettersDropdown = function clientsGettersDropdown(state) {
   return state.clientsDropdown;
+};
+
+var clientsGettersResouces = function clientsGettersResouces(state) {
+  return state.clientsResouces;
 };
 
 
@@ -122112,7 +122149,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var defaultState = {
   clients: [],
-  clientsDropdown: []
+  clientsDropdown: [],
+  clientsResouces: []
 };
 var inBrowser = typeof window !== 'undefined'; // if in browser, use pre-fetched state injected by SSR
 
@@ -122166,9 +122204,9 @@ __webpack_require__.r(__webpack_exports__);
 
 var createEmi = function createEmi(_ref, post) {
   var commit = _ref.commit;
-  axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/emi/store', post).then(function (res) {
-    console.log(res);
-    commit('CREATE_POST', res.data);
+  return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/emi/store', post).then(function (res) {
+    commit('CREATE_EMI', res.data);
+    return res;
   })["catch"](function (err) {
     console.log(err);
   });
@@ -122202,14 +122240,19 @@ var actions = {
 /*!******************************************************!*\
   !*** ./resources/VueApp/vuex/modules/emi/getters.js ***!
   \******************************************************/
-/*! exports provided: usersGetters */
+/*! exports provided: emisGetters, emiGetters */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "usersGetters", function() { return usersGetters; });
-var usersGetters = function usersGetters(state) {
-  return state.users;
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "emisGetters", function() { return emisGetters; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "emiGetters", function() { return emiGetters; });
+var emisGetters = function emisGetters(state) {
+  return state.emis;
+};
+
+var emiGetters = function emiGetters(state) {
+  return state.emi;
 };
 
 
@@ -122232,7 +122275,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var defaultState = {
-  emis: []
+  emis: [],
+  emi: []
 };
 var inBrowser = typeof window !== 'undefined'; // if in browser, use pre-fetched state injected by SSR
 
@@ -122251,16 +122295,16 @@ var state = inBrowser && window.__INITIAL_STATE__ ? window.__INITIAL_STATE__.use
 /*!********************************************************!*\
   !*** ./resources/VueApp/vuex/modules/emi/mutations.js ***!
   \********************************************************/
-/*! exports provided: CREATE_POST, FETCH_POSTS, DELETE_POST */
+/*! exports provided: CREATE_EMI, FETCH_POSTS, DELETE_POST */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CREATE_POST", function() { return CREATE_POST; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CREATE_EMI", function() { return CREATE_EMI; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_POSTS", function() { return FETCH_POSTS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DELETE_POST", function() { return DELETE_POST; });
-var CREATE_POST = function CREATE_POST(state, emi) {
-  state.emis.unshift(emi);
+var CREATE_EMI = function CREATE_EMI(state, emiResponse) {
+  return state.emi = Object.assign({}, state.emi, emiResponse);
 };
 
 var FETCH_POSTS = function FETCH_POSTS(state, emi) {

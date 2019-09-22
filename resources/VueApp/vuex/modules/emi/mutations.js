@@ -1,8 +1,8 @@
-const CREATE_POST = (state, emi) => {
-    state.emis.unshift(emi)
+const CREATE_EMI = (state, emiResponse) => {
+    return state.emi = Object.assign({}, state.emi, emiResponse);
 }
 const FETCH_POSTS = (state, emi) => {
-        return state.emis = emi
+    return state.emis = emi
 }
 const DELETE_POST = (state, emi) => {
     let index = state.emis.findIndex(item => item.id === emi.id)
@@ -10,7 +10,7 @@ const DELETE_POST = (state, emi) => {
 }
 
 export {
-    CREATE_POST,
+    CREATE_EMI,
     FETCH_POSTS,
     DELETE_POST
 }

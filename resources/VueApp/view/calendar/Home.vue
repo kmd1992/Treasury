@@ -23,12 +23,14 @@
                         schedulerLicenseKey="CC-Attribution-NonCommercial-NoDerivatives"
                         :header="calendarHeader"
                         :plugins="calendarPlugins"
-                        :resourceAreaWidth=180
+                        :resourceAreaWidth=280
                         :contentHeight=437
                         :navLinks=true
                         :eventLimit=true
                         :views="calendarViews"
                         themeSystem='bootstrap'
+                        resourceGroupField='type'
+                        :resourceColumns="calendarResourceColumns"
                         :resources="calendarResources"
                         :resourceRender="calendarResourceRender"
                         :events="calendarEvents"
@@ -47,6 +49,7 @@ import FullCalendar from '@fullcalendar/vue'
 import resourceTimelinePlugin from '@fullcalendar/resource-timeline';
 import interactionPlugin from '@fullcalendar/interaction';
 import bootstrapPlugin from '@fullcalendar/bootstrap';
+import { mapGetters } from 'vuex';
 
 import "@fullcalendar/core/main.css";
 import "@fullcalendar/timeline/main.css";
@@ -97,12 +100,21 @@ export default {
             },
             
             calendarWeekends: true,
-            calendarResources: 'https://fullcalendar.io/demo-resources.json?with-nesting&with-colors',
+            calendarResources: null,
+            calendarResourceColumns: [
+                {
+                    labelText: 'Client',
+                    field: 'name'
+                },
+                {
+                    labelText: 'Loan',
+                    field: 'loan'
+                }
+            ],
             calendarResourceRender: function(info) {
                 const x = document.createElement("A");
                 const icon = document.createElement("I");
-                //----- icon.style.color = info.resource._resource.ui.backgroundColor;
-                icon.style.color = "#577CFF";
+                icon.style.color = info.resource.extendedProps.color;
                 icon.setAttribute("class", "fa fa-circle");
                 const t = document.createTextNode(' \t ' + info.el.querySelector('.fc-cell-text').innerText);
                 /*----- x.setAttribute("href", route('calendar.info', {
@@ -116,7 +128,7 @@ export default {
                 info.el.querySelector('.fc-cell-text').appendChild(icon);
                 info.el.querySelector('.fc-cell-text').appendChild(x);
             },
-            calendarEvents: "https://fullcalendar.io/demo-events.json?single-day&for-resource-timeline",
+            calendarEvents: null,
             calendarEventRender: function(event, element) {
                 let tooltip = event.event.title;
                 //console.log(event.event);
@@ -152,35 +164,48 @@ export default {
         }
     },
     created() {
+        this.calendarResources = 'https://fullcalendar.io/demo-resources.json?with-nesting&with-colors';
+        this.calendarEvents = 'https://fullcalendar.io/demo-events.json?single-day&for-resource-timeline';
         
+        this.getCalendarResouces();
     },
-  methods: {
-    toggleWeekends() {
-      this.calendarWeekends = !this.calendarWeekends // update a property
-    },
-    gotoPast() {
-      let calendarApi = this.$refs.fullCalendar.getApi() // from the ref="..."
-      calendarApi.gotoDate('2000-01-01') // call a method on the Calendar object
-    },
-    handleDateClick(arg) {
-      if (confirm('Would you like to add an event to ' + arg.dateStr + ' ?')) {
-        this.calendarEvents.push({ // add new event data
-          title: 'New Event',
-          start: arg.date,
-          allDay: arg.allDay
-        })
-      }
-    },
-    convertEvtTime(str) {
-        var date = new Date(str),
-            mnth = ("0" + (date.getMonth() + 1)).slice(-2),
-            day = ("0" + date.getDate()).slice(-2);
-        return [date.getFullYear(), mnth, day].join("-");
-    },
-    openModal() {
-        this.modalOpen = !this.modalOpen;
+    methods: {
+        toggleWeekends:function() {
+            this.calendarWeekends = !this.calendarWeekends // update a property
+        },
+        gotoPast:function() {
+            let calendarApi = this.$refs.fullCalendar.getApi() // from the ref="..."
+            calendarApi.gotoDate('2000-01-01') // call a method on the Calendar object
+        },
+        handleDateClick:function(arg) {
+            if (confirm('Would you like to add an event to ' + arg.dateStr + ' ?')) {
+                this.calendarEvents.push({ // add new event data
+                title: 'New Event',
+                start: arg.date,
+                allDay: arg.allDay
+                })
+            }
+        },
+        convertEvtTime:function(str) {
+            var date = new Date(str),
+                mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+                day = ("0" + date.getDate()).slice(-2);
+            return [date.getFullYear(), mnth, day].join("-");
+        },
+        openModal:function() {
+            this.modalOpen = !this.modalOpen;
+        },
+        getCalendarResouces: function(){
+            this.$store.dispatch(`clientStore/getClientsResouces`, {params: {auth: this.$auth.user().id}}).then(
+                (res) => {
+                    if(res.status == 'success'){
+                        this.calendarResources = res.resouces 
+                        //console.log(res.resouces);
+                    }
+                }
+            );
+        }
     }
-  }
 }
 </script>
 

@@ -1,10 +1,10 @@
 import axios from 'axios'
 
 const createEmi = ({commit}, post) => {
-    axios.post('/emi/store', post)
-        .then(res => {
-            console.log(res);
-            commit('CREATE_POST', res.data)
+    return axios.post('/emi/store', post)
+        .then((res) => {
+            commit('CREATE_EMI', res.data)
+            return res;
         }).catch(err => {
         console.log(err)
     })
