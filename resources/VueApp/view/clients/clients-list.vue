@@ -10,6 +10,7 @@
                     <th>Occupation</th>
                     <th>Type</th>
                     <th>Date</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,6 +22,11 @@
                     <td>{{ client.occupation }}</td>
                     <td>{{ client.payer_type }}</td>
                     <td>{{ client.created_at}}</td>
+                    <td>
+                        <center>
+                            <router-link :to="{name:'client_profile', params:{id:client.id} }" class="btn btn-primary"><i class="fa fa-eye fa-2x" aria-hidden="true"></i></router-link>                        
+                        </center>
+                    </td>
                 </tr>
             </tbody>
         </table>

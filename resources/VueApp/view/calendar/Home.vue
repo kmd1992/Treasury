@@ -100,7 +100,7 @@ export default {
             },
             
             calendarWeekends: true,
-            calendarResources: null,
+            calendarResources: [{}],
             calendarResourceColumns: [
                 {
                     labelText: 'Client',
@@ -129,7 +129,7 @@ export default {
                 info.el.querySelector('.fc-cell-text').appendChild(icon);
                 info.el.querySelector('.fc-cell-text').appendChild(x);
             },
-            calendarEvents: null,
+            calendarEvents: [{}],
             calendarEventRender: function(event, element) {
                 let tooltip = event.event.title;
                 let desc = event.event.extendedProps.description;
@@ -149,8 +149,8 @@ export default {
                         desc.name + "</br>"+
                         "<em>" + desc.date + "</em></br>" + 
                         "Emi :- "+desc.emi + "</br>"+
-                        "Paid Amount :- "+desc.emi + "</br>"+
-                        "Pending Amount :- "+desc.emi + "</br>"+
+                        "Paid Amount :- "+desc.paidAmount + "</br>"+
+                        "Pending Amount :- "+desc.pendingAmount + "</br>"+
                         "</span>"
                     });
                     
@@ -172,9 +172,6 @@ export default {
         }
     },
     created() {
-        this.calendarResources = 'https://fullcalendar.io/demo-resources.json?with-nesting&with-colors';
-        this.calendarEvents = 'https://fullcalendar.io/demo-events.json?single-day&for-resource-timeline';
-        
         this.getCalendarResouces();
         this.getCalendarEvents();
     },

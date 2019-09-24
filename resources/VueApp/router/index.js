@@ -8,6 +8,7 @@ import AdminDashboard from '../view/admin/Dashboard.vue'
 import NotFound from '../view/partials/404.vue';
 import Client from '../view/clients/Home.vue';
 import ClientStore from '../view/clients/Store.vue';
+import ClientProfile from '../view/clients/Profile.vue';
 
 Vue.use(VueRouter)
 
@@ -74,6 +75,14 @@ const routes = [
         meta: {
           auth: true
         }
+    },
+    {
+      path: '/client/profile/:id',
+      name: 'client_profile',
+      component: ClientProfile,
+      meta: {
+        auth: true
+      }
     },
     {
       path: '*',
