@@ -70,11 +70,22 @@ const getClientsEvents = ({state}, params) =>{
                      console.log(error)
                })
 }
+const editProfile = ({state}, params) => {
+   return axios.get('/clients/edit', params)
+               .then((res) => {
+                  state.clientsEdit = res.data
+                  return res.data;
+               })
+               .catch(error => {
+                     console.log(error)
+               })
+}
 
 export {
    getClients,
    createClient,
    getClientsDropdown,
    getClientsResouces,
-   getClientsEvents
+   getClientsEvents,
+   editProfile
 }

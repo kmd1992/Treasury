@@ -107,4 +107,12 @@ class ClientController extends Controller
             'events' => $events
         ],200);
     }
+
+    public function edit(Request $request){
+        $request = $request->all();
+        return response()->json([
+            'status' => 'success',
+            'edit' => Client::where(['id'=>$request['id'],'user_id'=>$request['auth']])->first()->toArray()
+        ],200);
+    }
 }

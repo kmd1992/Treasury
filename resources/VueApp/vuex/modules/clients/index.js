@@ -6,7 +6,8 @@ const defaultState = {
   clients: [],
   clientsDropdown: [],
   clientsResouces: [],
-  clientsEvents: []
+  clientsEvents: [],
+  clientsEdit: []
 }
   
 const inBrowser = typeof window !== 'undefined'

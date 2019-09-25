@@ -2,9 +2,11 @@ const clientsGetters = state => state.clients;
 const clientsGettersDropdown = state => state.clientsDropdown;
 const clientsGettersResouces = state => state.clientsResouces;
 const clientsGettersEvents = state => state.clientsEvents;
+const clientsGettersEdit = state => state.clientsEdit
 export {
   clientsGetters,
   clientsGettersDropdown,
   clientsGettersResouces,
-  clientsGettersEvents
+  clientsGettersEvents,
+  clientsGettersEdit
 }
