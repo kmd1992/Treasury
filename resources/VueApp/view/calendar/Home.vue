@@ -121,8 +121,7 @@ export default {
                 /*----- x.setAttribute("href", route('calendar.info', {
                     'id': info.resource.id
                 })); */
-                x.setAttribute("href", "#");
-                x.setAttribute("target", "_Blank");
+                x.setAttribute("href", "/client/profile/"+info.resource.id);
                 x.style.textDecoration = "none";
                 x.appendChild(t);
                 info.el.querySelector('.fc-cell-text').innerText = "";

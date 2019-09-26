@@ -97,6 +97,6 @@ export default {
 </script>
 <style>
 .nav-pills>li>a {border-radius: 0px;}
-.nav>li>a {padding: 8.3px 15px;}
-.nav-stacked>li+li {border-bottom: 1px solid #f4f4f4;}
+.nav>li>a {padding: 8.3px 15px;border: 1px solid #eeeeee;}
+.alert {padding: 9.2px;}
 </style>

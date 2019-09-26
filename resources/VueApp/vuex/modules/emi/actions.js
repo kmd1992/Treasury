@@ -9,6 +9,13 @@ const createEmi = ({commit}, post) => {
         console.log(err)
     })
 }
+const getEmis = ({commit}, post) =>{
+    return axios.post('/emi/index', post)
+        .then((res) => {
+            commit('FETCH_EMIS', res.data.emis)
+            return res.data;
+        }).catch(err =>console.log(err))
+}
 let actions = {
     /* fetchPosts({commit}) {
         axios.get('/api/posts')
@@ -30,5 +37,6 @@ let actions = {
 }
 
 export {
-    createEmi
+    createEmi,
+    getEmis
 }

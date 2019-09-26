@@ -10,12 +10,16 @@ use App\Http\Controllers\EmiController;
 class LoanController extends Controller
 {
     public function index(Request $request){
-        $loan = Loan::select('id','amount','status')->where(['client_id'=>$request->id])->get()->toArray();
+        $loan = $this->getLoan([$request['id']])->toArray();
         $emi = (new EmiController)->getLoanEmi(['loan_id' => Arr::first($loan)['id']])->toArray();
         return response()->json([
             'status'=>'success',
             'loans'=>$loan,
             'emis'=>$emi
         ],200);
+    }
+
+    public function getLoan($client_id){
+        return Loan::select('id','amount','emi_amount','status')->whereIn('client_id', $client_id)->get();
     }
 }

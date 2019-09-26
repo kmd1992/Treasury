@@ -1,6 +1,6 @@
 <template>
 <div class="col-sm-9">
-    <table class="table table-hover table-nomargin table-colored-header table-striped">
+    <table v-if="dataEmi.emis.length > 0" class="table table-hover table-nomargin table-colored-header table-striped">
         <thead>
             <tr>
                 <th>#NO</th>
@@ -16,7 +16,9 @@
             </tr>
         </tbody>
     </table>
-</div>
+    <div v-else class="alert alert-danger alert-dismissable">
+        <strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Opes!</strong>&nbsp;&nbsp;This loan emi's not found.
+    </div>
 </div>
 </template>
 <script>
