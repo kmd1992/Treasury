@@ -7,7 +7,8 @@ const defaultState = {
   clientsDropdown: [],
   clientsResouces: [],
   clientsEvents: [],
-  clientsEdit: []
+  clientsEdit: [],
+  clientUpdate: []
 }
   
 const inBrowser = typeof window !== 'undefined'

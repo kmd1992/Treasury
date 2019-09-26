@@ -47,5 +47,8 @@ Route::prefix('v1')->group(function () {
         Route::get('clients/events', 'ClientController@events');
         Route::post('clients/store', 'ClientController@store');
         Route::get('clients/edit', 'ClientController@edit');
+        Route::post('clients/update', 'ClientController@update');
+        
+        Route::post('loans', 'LoanController@index');
     });
 });

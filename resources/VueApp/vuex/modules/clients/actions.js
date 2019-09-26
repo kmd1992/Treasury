@@ -80,12 +80,24 @@ const editProfile = ({state}, params) => {
                      console.log(error)
                })
 }
-
+const updateClient = ({commit, state}, post) => {
+   return axios.post('/clients/update', post)
+               .then((res) => {
+                  var client = res.data.client;
+                  state.clientUpdate = client
+                  commit('UPDATE_CLIENTS',{ client });
+                  return res.data;
+               })
+               .catch(error => {
+                     console.log(error)
+               })
+}
 export {
    getClients,
    createClient,
    getClientsDropdown,
    getClientsResouces,
    getClientsEvents,
-   editProfile
+   editProfile,
+   updateClient
 }

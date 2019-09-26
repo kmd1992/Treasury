@@ -21,4 +21,8 @@ class EmiController extends Controller
             'end'=>$request->date
         ]);
     }
+
+    public function getLoanEmi($request){
+        return Emi::select('id','loan_id','emi','start','end')->whereIn('loan_id', [$request['loan_id']])->get();
+    }
 }

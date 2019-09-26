@@ -11,12 +11,6 @@
                     <input type="text" class="form-control" v-model="data.form_data.name" id="inputName" placeholder="Enter full name" disabled>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="inputEmail">Email Address</label>
-                    <input type="email" class="form-control" v-model="data.form_data.email" id="inputEmail" placeholder="Enter e-mail address">
-                </div>
-            </div>
         </div>
         <div class="row">
             <div class="col-md-4">
@@ -87,7 +81,11 @@ export default {
     },
     methods:{
         createClient:function(form_data){
-            console.log(form_data);
+            this.$store.dispatch('clientStore/updateClient', form_data)
+            .then( (res) => {
+                if(res.status == 'success') this.$router.push({name:'client'});
+                else console.log(res);
+            })
         }
     }
 }

@@ -115,4 +115,12 @@ class ClientController extends Controller
             'edit' => Client::where(['id'=>$request['id'],'user_id'=>$request['auth']])->first()->toArray()
         ],200);
     }
+
+    public function update(Request $request, Client $client){
+        $client::find($request->id)->update($request->all());
+        return response()->json([
+            'status' => 'success',
+            'client' => $client->id
+        ],200);
+    }
 }
