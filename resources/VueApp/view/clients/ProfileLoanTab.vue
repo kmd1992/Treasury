@@ -17,32 +17,32 @@
                     </a>
                     <div id="c22" class="panel-collapse collapse" style="height: 0px;">
                         <div class="panel-body">
-                            <form action="" class="form-vertical">
+                            <form action="" class="form-vertical" @submit="createEmi(post)">
                                 <div class="form-group">
                                     <label for="price" class="control-label">Amount</label>
                                     <div class="input-group"><span class="input-group-addon">Rs.</span> 
-                                        <input type="text" placeholder="Price" id="price" name="price" class="form-control">
+                                        <input type="text" placeholder="Amount" id="amount" v-model="loan_data.amount" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="price" class="control-label">Paid amount</label>
                                     <div class="input-group"><span class="input-group-addon">Rs.</span> 
-                                        <input type="text" placeholder="Price" id="price" name="price" class="form-control">
+                                        <input type="text" placeholder="Paid Amount" id="price" v-model="loan_data.paid_amount" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="price" class="control-label">EMI</label>
                                     <div class="input-group"><span class="input-group-addon">Rs.</span> 
-                                        <input type="text" placeholder="Price" id="price" name="price" class="form-control">
+                                        <input type="text" placeholder="Emi" id="emi" v-model="loan_data.emi" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="price" class="control-label">Description</label>
-                                    <textarea name="textarea" id="textarea" class="form-control"></textarea>
+                                    <textarea v-model="loan_data.desc" id="desc" placeholder="Enter description" class="form-control"></textarea>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <button type="button" class="btn btn-primary btn-block">Save</button>
+                                        <button :disabled="!isValid" class="btn btn-primary btn-block" @click.prevent="createClient(loan_data)">Save</button>
                                     </div>
                                     <div class="col-sm-6">
                                         <button type="button" class="btn btn-default btn-block collapsed" data-toggle="collapse" data-target="#c22" >Close</button>
@@ -73,7 +73,15 @@ export default {
                 emis:[{}]
             },
             activeIndex: 0,
-            ifPaidAll: true
+            ifPaidAll: true,
+            loan_data:{
+                user_id : this.$auth.user().id,
+                client_id:this.$route.params.id,
+                amount:'',
+                paid_amount:'',
+                emi:'',
+                desc:''
+            },
         }
     },
     created(){
@@ -115,6 +123,21 @@ export default {
                     }
                 }
             );
+        },
+        createLoan:function(form_data){
+            this.$store.dispatch('clientStore/createLoan', form_data)
+            .then( (res) => {
+                console.log(res);
+            })
+        }
+    },
+    computed:{
+        isValid:function(){
+            return (
+                this.loan_data.amount !== "" && 
+                this.loan_data.paid_amount !== "" && 
+                this.loan_data.emi !== "" 
+            )
         }
     }
 }
