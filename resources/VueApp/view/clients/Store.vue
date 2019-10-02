@@ -7,7 +7,7 @@
             <div class="col-sm-12">
                 <div class="box box-bordered">
                     <div class="box-title">
-                        <h3><i class="fa fa-bars"></i></h3>
+                        <h3><i class="fa fa-pencil-square-o"></i></h3>
                         <router-link :to="{ path: '/client' }" class="btn btn-primary"><i class="fa fa-arrow-left"></i>&nbsp;BACK</router-link>
                     </div>
                     <div class="box-content ">

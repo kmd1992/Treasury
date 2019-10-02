@@ -22,4 +22,17 @@ class LoanController extends Controller
     public function getLoan($client_id){
         return Loan::select('id','amount','emi_amount','status')->whereIn('client_id', $client_id)->get();
     }
+
+    public function store(Request $request){
+        Loan::create([
+            'client_id'=>$request->client_id,
+            'amount'=>$request->amount,
+            'paid_amount'=>$request->paid_amount,
+            'emi_amount'=>$request->emi,
+            'emi_type' =>$request->emi_type,
+            'desc'=>$request->desc,
+            'status'=>'pending'
+        ]);
+        return response()->json(['status'=>'success'],200);
+    }
 }

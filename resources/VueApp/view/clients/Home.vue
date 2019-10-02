@@ -10,8 +10,8 @@
 			<div class="col-sm-12">
 				<div class="box box-bordered">
 					<div class="box-title">
-						<h3><i class="fa fa-bars"></i></h3>
-                        <router-link :to="{ path: '/client/store' }" class="btn btn-primary"><i class="fa fa-user"></i>&nbsp;ADD CLIENT</router-link>
+						<h3><i class="fa fa-users"></i></h3>
+                        <router-link :to="{ path: '/client/store' }" class="btn btn-primary"><i class="fa fa-plus"></i>&nbsp;ADD CLIENT</router-link>
 					</div>
 					<div class="box-content nopadding">
 						<client-list></client-list>

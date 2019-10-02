@@ -9,11 +9,11 @@
             <div class="col-sm-12">
                 <div class="box box-bordered">
                     <div class="box-title">
-                        <h3><i class="fa fa-bars"></i></h3>
+                        <h3><i class="fa fa-calendar"></i></h3>
 
                         <model></model>     <!-- Model popup component -->
 
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">ADD EMI</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i>&nbsp;ADD EMI</button>
                     </div>
                     <div class="box-content">
                         <FullCalendar

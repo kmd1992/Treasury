@@ -14,4 +14,6 @@ class Emi extends Model
     protected $fillable = [
         'loan_id', 'emi', 'start', 'end'
     ];
+
+    
 }

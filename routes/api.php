@@ -53,5 +53,6 @@ Route::prefix('v1')->group(function () {
         Route::post('clients/update', 'ClientController@update');
         
         Route::post('loans', 'LoanController@index');
+        Route::post('loan/store', 'LoanController@store');
     });
 });
