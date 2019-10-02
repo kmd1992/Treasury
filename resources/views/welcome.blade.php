@@ -16,7 +16,7 @@
     }
 
     body {
-    background: #ffffff;
+    background: #F8F9FA;
     display: flex;
     flex-flow: column;
     }

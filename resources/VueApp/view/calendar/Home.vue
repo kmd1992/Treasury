@@ -203,9 +203,6 @@ export default {
                 day = ("0" + date.getDate()).slice(-2);
             return [date.getFullYear(), mnth, day].join("-");
         },
-        openModal:function() {
-            this.modalOpen = !this.modalOpen;
-        },
         getCalendarResouces: function(){
             this.$store.dispatch(`clientStore/getClientsResouces`, {params: {auth: this.$auth.user().id}}).then(
                 (res) => {

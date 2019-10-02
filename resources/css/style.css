@@ -4588,6 +4588,7 @@ label, input, button, select, textarea {
   top: 40px;
 }
 #content.container-fluid {
+  background: #f4f4f4;
   padding: 0;
 }
 #content.container-fluid.nav-fixed {
@@ -4596,7 +4597,6 @@ label, input, button, select, textarea {
 
 #main {
   *zoom: 1;
-  background: #fff;
   margin-left: 200px;
   overflow: visible;
   padding-bottom: 30px;
@@ -5711,6 +5711,10 @@ label, input, button, select, textarea {
   background: #fff;
   color: #368ee0;
 }
+.box.box-bordered {
+  -webkit-box-shadow: 0 5px 10px 2px hsla(0,0%,64%,.2);
+  box-shadow: 0 5px 10px 2px hsla(0,0%,64%,.2);
+}
 .box.box-bordered .table {
   margin-bottom: 0;
 }
@@ -5748,15 +5752,14 @@ label, input, button, select, textarea {
   border-color: #368ee0;
 }
 .box.box-bordered .box-title {
-  border: 2px solid #ddd;
+  background: #fff;
 }
 .box.box-bordered .box-content {
-  border: 2px solid #ddd;
   border-top: 0;
 }
 .box .box-title {
   *zoom: 1;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid hsla(0,0%,64%,.2);
   padding: 7px 0 7px 10px;
   margin-top: 20px;
 }
@@ -7732,7 +7735,8 @@ body.error .wrapper .buttons {
 }
 .login .wrapper .login-body {
   margin-top: 20px;
-  box-shadow: 0px 2px 10px rgba(0,0,0,.075);
+  box-shadow: 0 2px 25px 0 rgba(0,0,0,.15);
+  border-radius: 5px;
   background: #fff;
 }
 .login .wrapper .login-body form {
