@@ -9,24 +9,42 @@
                 </div>
                 <div class="modal-body">
                     <form action="" class="form-vertical" @submit="createEmi(post)">
-                        <div class="form-group">
-                            <label for="date" class="control-label">Enter Date</label>
-                            <input type="text" id="date" :placeholder="datePlaceholder + ' 24:00'" name="date" v-model="emi.date" class="form-control" v-mask="'##/##/#### ##:##'" >
-                            <span class="help-block">Format: dd/mm/yyyy</span>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="date" class="control-label">Enter From Date</label>
+                                    <input type="text" id="fromdate" :placeholder="datePlaceholder.fromPlaceDate + ' 24:00'" name="date" v-model="emi.fromdate" class="form-control" v-mask="'##/##/#### ##:##'" >
+                                    <span class="help-block">Format: dd/mm/yyyy</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="date" class="control-label">Enter To Date</label>
+                                    <input type="text" id="todate" :placeholder="datePlaceholder.toPlaceDate + ' 24:00'" name="date" v-model="emi.todate" class="form-control" v-mask="'##/##/#### ##:##'" >
+                                    <span class="help-block">Format: dd/mm/yyyy</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="client" class="control-label">Select client</label>
-                            <!-- <select2Client v-bind="emi"></select2Client> -->
-                            <select v-model="emi.client" id="client" name="client" class="form-control">
-                                <option selected> --- Select Client ---</option>
-                                <option :value="client.id" v-for="client in clientsGettersDropdown">{{ client.text }}</option>
-                            </select>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="client" class="control-label">Select client</label>
+                                    <select v-model="emi.client" id="client" name="client" class="form-control">
+                                        <option selected> --- Select Client ---</option>
+                                        <option :value="client.id" v-for="client in clientsGettersDropdown">{{ client.text }}</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="price" class="control-label">Enter EMI amount</label>
-                            <div class="input-group">
-                                <span class="input-group-addon">Rs.</span>
-                                <input type="text" placeholder="Price" id="price" name="price" v-model="emi.price" class="form-control">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="price" class="control-label">Enter EMI amount</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Rs.</span>
+                                        <input type="text" placeholder="Price" id="price" name="price" v-model="emi.price" class="form-control">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -56,16 +74,21 @@ export default {
     data() {
         return {
             emi: {
-                date: '',
+                fromdate: '',
+                todate:'',
                 client: '--- Select Client ---',
                 price: ''
             },
-            datePlaceholder: '',
+            datePlaceholder: {
+                fromPlaceDate:'',
+                toPlaceDate:'',
+            },
         }
     },
     mounted(){
         const date = new Date();
-        this.datePlaceholder = (this.convertDate(new Date(date.getFullYear(), date.getMonth(), 1)));
+        this.datePlaceholder.fromPlaceDate = (this.convertDate(new Date(date.getFullYear(), date.getMonth(), 1)));
+        this.datePlaceholder.toPlaceDate = (this.convertDate(new Date(date.getFullYear(), date.getMonth()+1, 0)));
         
         this.loadClients();     //API call
     },
@@ -73,9 +96,9 @@ export default {
         createEmi:function(emi) {
             this.$store.dispatch('emi/createEmi', emi).then(
                 (response) => {
-                    if(response.status == 201){
+                    if(response.status == 200){
                         $("#myModal").modal('hide');
-                        console.log("Emi Stored successfuly");
+                        //console.log("Emi Stored successfuly");
                     }
                 }
             );

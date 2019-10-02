@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Emi;
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
 use App\Http\Controllers\LoanController;
 
@@ -23,12 +25,29 @@ class EmiController extends Controller
 
     public function store(Request $request)
     {
-        return Emi::create([
-            'loan_id'=>$request->client,
-            'emi'=>$request->price,
-            'start'=>$request->date,
-            'end'=>$request->date
-        ]);
+        if($request->todate != null){
+            $fromdate = Carbon::parse(str_replace('/','-',trim($request->fromdate)))->format('Y-m-d');
+            $todate = Carbon::parse(str_replace('/','-',trim($request->todate)))->format('Y-m-d');
+            $period = CarbonPeriod::create($fromdate, $todate)->toArray();
+            array_walk($period, function($val, $key) use ($request){
+                Emi::create([
+                    'loan_id'=>$request->client,
+                    'emi'=>$request->price,
+                    'start'=>Carbon::parse($val)->format('Y-m-d'),
+                    'end'=>Carbon::parse($val)->format('Y-m-d')
+                ]);
+            });
+        }else{
+            Emi::create([
+                'loan_id'=>$request->client,
+                'emi'=>$request->price,
+                'start'=>Carbon::parse(str_replace('/','-',trim($request->fromdate)))->format('Y-m-d'),
+                'end'=>Carbon::parse(str_replace('/','-',trim($request->fromdate)))->format('Y-m-d'),
+            ]);
+        }
+        return response()->json([
+            'status'=>'success',
+        ],200);
     }
 
     public function getLoanEmi($request){
