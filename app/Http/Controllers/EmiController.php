@@ -53,4 +53,12 @@ class EmiController extends Controller
     public function getLoanEmi($request){
         return Emi::select('id','loan_id','emi','start','end')->whereIn('loan_id', [$request['loan_id']])->get();
     }
+
+    public function destroy(Request $request){
+        Emi::where('id', $request->id)->delete();
+        return response()->json([
+            'status'=>'success',
+            'emis'=>$this->getLoanEmi($request->all())->toArray()
+        ],200);
+    }
 }

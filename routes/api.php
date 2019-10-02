@@ -42,6 +42,7 @@ Route::prefix('v1')->group(function () {
         Route::resource('users', 'UserController')->only(['index','show']);
         Route::post('emi/index', 'EmiController@data');
         Route::post('emi/store', 'EmiController@store');
+        Route::post('emi/destroy', 'EmiController@destroy');
 
         Route::get('clients', 'ClientController@index');
         Route::get('clients/dropdown', 'ClientController@dropdown');

@@ -30,6 +30,7 @@
                         :views="calendarViews"
                         themeSystem='bootstrap'
                         resourceGroupField='type'
+                        :businessHours="calendarBusinessHours"
                         :resourceColumns="calendarResourceColumns"
                         :resources="calendarResources"
                         :resourceRender="calendarResourceRender"
@@ -98,7 +99,9 @@ export default {
                     columnHeaderFormat: 'ddd D',
                 }
             },
-            
+            calendarBusinessHours: {
+                daysOfWeek: [ 1, 2, 3, 4, 5, 6 ], // Monday - Thursday
+            },
             calendarWeekends: true,
             calendarResources: [{}],
             calendarResourceColumns: [
@@ -132,6 +135,9 @@ export default {
             calendarEventRender: function(event, element) {
                 let tooltip = event.event.title;
                 let desc = event.event.extendedProps.description;
+                let date = new Date(desc.date);
+                let descDate = ((date.getDate() > 9) ? date.getDate() : ('0' + date.getDate())) + '-' + ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.getMonth() + 1))) + '-' + date.getFullYear();
+
                 //console.log(desc);
                 //let desc = {name: 'Test Event Name', date: '01-01-2019', emi: '100'};
                 if (event.el) {
@@ -144,9 +150,9 @@ export default {
                         boundary: 'window',
                         container: 'body',
                         title: "<span style='text-align:left'>"+
-                        "<i class='fa fa-circle' style='color: "+desc.color+"'></i>&nbsp;&nbsp;" + 
+                        "<div style='height:3px;background: "+desc.color+"'></div>" + 
                         desc.name + "</br>"+
-                        "<em>" + desc.date + "</em></br>" + 
+                        "Date :- " + descDate + "</br>" + 
                         "Emi :- "+desc.emi + "</br>"+
                         "Paid Amount :- "+desc.paidAmount + "</br>"+
                         "Pending Amount :- "+desc.pendingAmount + "</br>"+
@@ -183,13 +189,13 @@ export default {
             calendarApi.gotoDate('2000-01-01') // call a method on the Calendar object
         },
         handleDateClick:function(arg) {
-            if (confirm('Would you like to add an event to ' + arg.dateStr + ' ?')) {
+            /* if (confirm('Would you like to add an event to ' + arg.dateStr + ' ?')) {
                 this.calendarEvents.push({ // add new event data
                 title: 'New Event',
                 start: arg.date,
                 allDay: arg.allDay
                 })
-            }
+            } */
         },
         convertEvtTime:function(str) {
             var date = new Date(str),
