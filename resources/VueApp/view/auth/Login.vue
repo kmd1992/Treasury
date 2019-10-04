@@ -105,3 +105,8 @@ export default {
   }
 };
 </script>
+<style>
+body{
+    background: #F8F9FA !important;
+}
+</style>

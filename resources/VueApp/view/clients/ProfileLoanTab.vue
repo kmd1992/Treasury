@@ -32,7 +32,7 @@
                     <label for="price" class="control-label">Amount</label>
                     <div class="input-group">
                       <span class="input-group-addon">Rs.</span>
-                      <input type="text" placeholder="Amount" id="amount" v-model="loan_data.amount" class="form-control" />
+                      <input type="text" placeholder="Amount" id="amount" v-model="loan_data.amount" class="form-control" v-on:keyup="paidAmountFormula"/>
                     </div>
                   </div>
                   <div class="form-group">
@@ -45,6 +45,7 @@
                         id="price"
                         v-model="loan_data.paid_amount"
                         class="form-control"
+                        :readonly="loan_data.paid_amount"
                       />
                     </div>
                   </div>
@@ -116,11 +117,11 @@ export default {
       loan_data: {
         user_id: this.$auth.user().id,
         client_id: this.$route.params.id,
-        amount: "",
-        paid_amount: "",
-        emi: "",
+        amount: '',
+        paid_amount: '',
+        emi: '',
         emi_type: "daily",
-        desc: ""
+        desc: ''
       }
     };
   },
@@ -168,6 +169,9 @@ export default {
           console.log(res, "error");
         }
       });
+    },
+    paidAmountFormula:function(){
+        this.loan_data.paid_amount = parseInt(this.loan_data.amount - (this.loan_data.amount*0.12))
     }
   },
   computed: {

@@ -6,9 +6,9 @@
         <div v-bind:id="($auth.check() && !$route.meta.hideNavigation) ? 'content' : ''" v-bind:class="[($auth.check() && !$route.meta.hideNavigation) ? 'container-fluid' : 'wrapper']">
             <router-view></router-view>
         </div>
-        <div v-if="$auth.check() && !$route.meta.hideNavigation">
+        <!-- <div v-if="$auth.check() && !$route.meta.hideNavigation">
             <footer-stiky></footer-stiky>
-        </div>
+        </div> -->
     </div>
 </template>
 <script>

@@ -18,7 +18,7 @@ class EmiController extends Controller
     public function data(Request $request){
         return response()->json([
             'status'=>'success',
-            'loan'=>(new LoanController)->getLoan([$request['id']]),
+            'loan'=>(new LoanController)->getLoan(['client_id'=>$request['id']]),
             'emis'=>$this->getLoanEmi($request->all())->toArray()
         ],200);
     }
@@ -29,21 +29,28 @@ class EmiController extends Controller
             $fromdate = Carbon::parse(str_replace('/','-',trim($request->fromdate)))->format('Y-m-d');
             $todate = Carbon::parse(str_replace('/','-',trim($request->todate)))->format('Y-m-d');
             $period = CarbonPeriod::create($fromdate, $todate)->toArray();
-            array_walk($period, function($val, $key) use ($request){
-                Emi::create([
+            $data = [];
+            array_walk($period, function($val, $key) use ($request, &$data){
+                $data[] = [
                     'loan_id'=>$request->client,
                     'emi'=>$request->price,
                     'start'=>Carbon::parse($val)->format('Y-m-d'),
                     'end'=>Carbon::parse($val)->format('Y-m-d')
-                ]);
+                ];
             });
         }else{
-            Emi::create([
+            $data = [
                 'loan_id'=>$request->client,
                 'emi'=>$request->price,
                 'start'=>Carbon::parse(str_replace('/','-',trim($request->fromdate)))->format('Y-m-d'),
                 'end'=>Carbon::parse(str_replace('/','-',trim($request->fromdate)))->format('Y-m-d'),
-            ]);
+            ];
+        }
+        Emi::insert($data);
+        $emis = $this->getLoanEmi(['loan_id'=>$request->client])->toArray();
+        $loan = (new LoanController)->getLoan(['id'=>$request->client])->first()->toArray();
+        if(intval(array_sum(array_column($emis, 'emi'))) == intval($loan['amount']) || intval(array_sum(array_column($emis, 'emi'))) >= intval($loan['amount'])){
+            (new LoanController)->update(['id'=>$request->client,'data'=>['status'=>'paid']]);
         }
         return response()->json([
             'status'=>'success',
