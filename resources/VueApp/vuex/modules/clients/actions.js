@@ -1,5 +1,5 @@
 import axios from 'axios'
-import laravelService from '../../../api/app.service';
+import clientService from './service';
 
 const getClients = ({state}) => 
 {
@@ -9,7 +9,8 @@ const getClients = ({state}) =>
 
    return new Promise(
       (resolve, reject) => {
-         laravelService.getClientService()
+         const params = { params: {} };
+         clientService.getClientService('clients', params)
                        .then((resUsers) => {
                            const clients = resUsers.clients;
                            Promise.all(clients).then(resolClients => {
@@ -38,7 +39,8 @@ const getClientsDropdown = ({state}) => {
    if (state.clientsDropdown && state.clientsDropdown.length > 0) return;
    return new Promise(
       (resolve, reject) => {
-         laravelService.getClientsDropdownService()
+         const params = { params: {} };
+         clientService.getClientsDropdownService('clients/dropdown', params)
                        .then((response) => {
                            Promise.all(response.clients).then(resolClients => {
                                        state.clientsDropdown = resolClients

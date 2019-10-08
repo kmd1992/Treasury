@@ -9,6 +9,7 @@ import NotFound from '../view/partials/404.vue';
 import Client from '../view/clients/Home.vue';
 import ClientStore from '../view/clients/Store.vue';
 import ClientProfile from '../view/clients/Profile.vue';
+import LoanSummary from '../view/loan_summary/Home.vue';
 
 Vue.use(VueRouter)
 
@@ -83,6 +84,15 @@ const routes = [
       meta: {
         auth: true
       }
+    },
+    // Loan summary
+    {
+      path: '/loan_summary',
+        name: 'loan_summary',
+        component: LoanSummary,
+        meta: {
+          auth: true
+        }
     },
     {
       path: '*',

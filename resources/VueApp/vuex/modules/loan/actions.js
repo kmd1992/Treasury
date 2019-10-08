@@ -1,6 +1,6 @@
 const getLoans = ({ state }, params) => {
    return axios
-     .post("/loans", params)
+     .post("/loan", params)
      .then(res => {
        state.loans = res.data;
        return res.data;
@@ -20,5 +20,12 @@ const getLoans = ({ state }, params) => {
        console.log(error);
      });
  };
- export { getLoans, createLoan };
+const loanSummary = ({state}, params) => {
+    return axios.get("/loan/loan_summary", params).then(
+        (res) => {
+            state.loan_summary = res.data;
+            return res.data;
+        }).catch(error => console.log(error) );
+};
+ export { getLoans, createLoan, loanSummary };
  

@@ -8,7 +8,7 @@ const getUserAction = ({state}) =>
 
    return new Promise( 
       (resolve, reject) => {
-         laravelService.getUserService().then((responseUsers) => {
+         laravelService.getUserService('users').then((responseUsers) => {
             const users = responseUsers.users
             Promise.all(users).then(resolveUsers => {
                state.users = resolveUsers
