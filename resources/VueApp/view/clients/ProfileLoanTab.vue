@@ -45,7 +45,6 @@
                         id="price"
                         v-model="loan_data.paid_amount"
                         class="form-control"
-                        :readonly="loan_data.paid_amount"
                       />
                     </div>
                   </div>

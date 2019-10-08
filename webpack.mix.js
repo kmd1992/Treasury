@@ -1,6 +1,5 @@
 const mix = require('laravel-mix');
 
-
 mix.styles([
    'resources/css/bootstrap.min.css',     //base theme css start
    'resources/css/plugins/jquery-ui/jquery-ui.min.css',

@@ -8,16 +8,10 @@ use Validator;
 use App\Models\User;
 
 use Hash;
-use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
-use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Auth\Events\PasswordReset;
 
 class AuthController extends Controller
 {
-    use ResetsPasswords, SendsPasswordResetEmails {
-        ResetsPasswords::broker insteadof SendsPasswordResetEmails;
-    }
-
     /**
      * Register a new user
      */

@@ -5,8 +5,8 @@ const Config = {
   appTitleShort: 'Treasury',
   appDescription: 'The finance managment system',
   appIcon: 'assets/app-icon.png',
-  appDomain: 'http://laravelcalendar.com/api/v1/',
-  loadDbName : 'vuejs_laravel_jwt_auth'
+  appDomain: process.env.MIX_APP_API_URL,
+  loadDbName : 'treasury_time_db'
 }
 
 module.exports = Config
