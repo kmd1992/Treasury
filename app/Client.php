@@ -18,4 +18,8 @@ class Client extends Model
     public function loan(){
         return $this->hasOne(Loan::class,'client_id','id');
     }
+
+    public function loans(){
+        return $this->hasMany(Loan::class,'client_id','id');
+    }
 }

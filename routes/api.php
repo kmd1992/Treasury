@@ -40,19 +40,24 @@ Route::prefix('v1')->group(function () {
      **/    
     Route::middleware('auth:api')->group(function () {
         Route::resource('users', 'UserController')->only(['index','show']);
-        Route::post('emi/index', 'EmiController@data');
-        Route::post('emi/store', 'EmiController@store');
-        Route::post('emi/destroy', 'EmiController@destroy');
-
-        Route::get('clients', 'ClientController@index');
-        Route::get('clients/dropdown', 'ClientController@dropdown');
-        Route::get('clients/resources', 'ClientController@resources');
-        Route::get('clients/events', 'ClientController@events');
-        Route::post('clients/store', 'ClientController@store');
-        Route::get('clients/edit', 'ClientController@edit');
-        Route::post('clients/update', 'ClientController@update');
-        
-        Route::post('loans', 'LoanController@index');
-        Route::post('loan/store', 'LoanController@store');
+        Route::prefix('clients')->group(function () {
+            Route::get('/', 'ClientController@index');
+            Route::get('/dropdown', 'ClientController@dropdown');
+            Route::get('/resources', 'ClientController@resources');
+            Route::get('/events', 'ClientController@events');
+            Route::post('/store', 'ClientController@store');
+            Route::get('/edit', 'ClientController@edit');
+            Route::post('/update', 'ClientController@update');
+        });
+        Route::prefix('emi')->group(function () {
+            Route::post('/index', 'EmiController@data');
+            Route::post('/store', 'EmiController@store');
+            Route::post('/destroy', 'EmiController@destroy');
+        });
+        Route::prefix('loan')->group(function () {
+            Route::post('/', 'LoanController@index');
+            Route::post('/store', 'LoanController@store');
+            Route::get('/loan_summary', 'LoanController@loan_summary');
+        });
     });
 });

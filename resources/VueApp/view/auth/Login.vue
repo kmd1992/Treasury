@@ -56,53 +56,45 @@
 </template>
 <script>
 export default {
-  data() {
-    return {
-      email: null,
-      password: null,
-      success: false,
-      has_error: false,
-      error: ""
-    };
-  },
-  mounted() {
-    //
-  },
-  methods: {
-    login() {
-      // get the redirect object
-      var redirect = this.$auth.redirect();
-      var app = this;
-      this.$auth.login({
-        data: {
-          email: app.email,
-          password: app.password
-        },
-        success: function() {
-          // handle redirection
-          app.success = true;
-          let redirectTo = "home";
-          if (parseInt(this.$auth.user().role) === -1) {
-            redirectTo = "admin.dashboard";
-          } else if (parseInt(this.$auth.user().role) === 1) {
-            redirectTo = "dashboard";
-          }
-          //const redirectTo = redirect ? redirect.from.name : parseInt(this.$auth.user().role) === -1 ? 'admin.dashboard' : 'dashboard';
-          /* console.log(redirect);
-               console.log(parseInt(this.$auth.user().role));
-               console.log(redirectTo); */
-          // const redirectTo = 'dashboard'
-          this.$router.push({ name: redirectTo });
-        },
-        error: function() {
-          app.has_error = true;
-          app.error = res.response.data.error;
-        },
-        rememberMe: true,
-        fetchUser: true
-      });
+    data() {
+        return {
+            email: null,
+            password: null,
+            success: false,
+            has_error: false,
+            error: ""
+        };
+    },
+    methods: {
+        login:function() {
+            var redirect = this.$auth.redirect();
+            var app = this;
+            this.$auth.login({
+                    data: {
+                    email: app.email,
+                    password: app.password
+                },
+                success: function() {
+                    app.success = true;
+                    let redirectTo = "home";
+                    if (parseInt(this.$auth.user().role) === -1) {
+                        redirectTo = "admin.dashboard";
+                    } else if (parseInt(this.$auth.user().role) === 1) {
+                        redirectTo = "dashboard";
+                    }
+                    //const redirectTo = redirect ? redirect.from.name : parseInt(this.$auth.user().role) === -1 ? 'admin.dashboard' : 'dashboard';
+                    //console.log(redirect);
+                    this.$router.push({ name: redirectTo });
+                },
+                error: function() {
+                    app.has_error = true;
+                    app.error = res.response.data.error;
+                },
+                rememberMe: true,
+                fetchUser: true
+            });
+        }
     }
-  }
 };
 </script>
 <style>

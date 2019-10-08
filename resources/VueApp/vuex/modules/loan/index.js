@@ -4,6 +4,7 @@ import * as mutations from './mutations'
 
 const defaultState = {
     loans: [],
+    loan_summary: []
 }
   
 const inBrowser = typeof window !== 'undefined'
