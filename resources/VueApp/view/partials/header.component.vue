@@ -15,6 +15,9 @@
             <li :class="{active : currentLocation == 'loan_summary'}">
                 <router-link :to="{ name: 'loan_summary'}" exact v-on:click.native="activeRoute"><i class="fa fa-handshake-o"></i>&nbsp;&nbsp;LOAN SUMMARY</router-link>
             </li>
+            <li :class="{active : currentLocation == 'report'}">
+                <router-link :to="{ name: 'report'}" exact v-on:click.native="activeRoute"><i class="fa fa-table"></i>&nbsp;&nbsp;REPORT</router-link>
+            </li>
         </ul>
         <div class="user">
             <ul class="icon-nav">
@@ -45,15 +48,18 @@ export default {
             this.$router.push({ name: 'home', query: { redirect: '/' } });
         },
         activeRoute:function(){
-            this.currentLocation = this.$route.name;
+            this.currentLocation = this.activeTab();
+        },
+        activeTab:function(){
+            var routePath = this.$route.path;
+            var val = routePath.substr(routePath.indexOf("/") + 1)
+            if (val.indexOf('/') > -1)
+                return val.substr(0, val.indexOf("/"));
+            else return val;
         }
     },
     mounted(){
-        var routePath = this.$route.path;
-        var val = routePath.substr(routePath.indexOf("/") + 1)
-        if (val.indexOf('/') > -1)
-            this.currentLocation = val.substr(0, val.indexOf("/"));
-        else this.currentLocation = val;
+        this.currentLocation = this.activeTab();
     }
 }
 </script>
